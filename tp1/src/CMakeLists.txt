@@ -1,5 +1,28 @@
 PROJECT(tp1)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.11)
+
+set(CMAKE_CXX_STANDARD 17)
+
 AUX_SOURCE_DIRECTORY(. DIR_SRCS)
 INCLUDE_DIRECTORIES(.)
+
 ADD_EXECUTABLE(tp1 ${DIR_SRCS})
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/e2239ee6043f73722e7aa812a459f54a28552929.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+ADD_EXECUTABLE(tp1Test "tests/GaussianEliminationTest.cpp" "tests/BackwardSustitutionTest.cpp" "tests/ForwardSubstitutionTest.cpp" "tests/LUFactorizationTest.cpp")
+TARGET_INCLUDE_DIRECTORIES(tp1Test PUBLIC .)
+TARGET_LINK_LIBRARIES(tp1Test gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(tp1Test)
+
