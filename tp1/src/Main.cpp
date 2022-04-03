@@ -6,7 +6,7 @@
 
 int main(const int argc, char** argv)
 {
-	if (argc < 4)
+	if (argc != 4)
 	{
 		std::cerr << "Cantidad de parametros invalida. Se esperaban 3 parametros.\n";
 		return -1;

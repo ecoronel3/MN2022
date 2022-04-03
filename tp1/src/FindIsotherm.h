@@ -1,8 +1,5 @@
 #pragma once
 
-#include <format>
-#include <numbers>
-
 #include "BackwardSustitution.h"
 #include "GaussianElimination.h"
 #include "MatrixN.h"
@@ -11,14 +8,11 @@
 
 namespace mn
 {
-#if __cplusplus > 201704L
-    constexpr auto pi = std::numbers::pi;
-#else
     constexpr auto pi = 3.141592653589793;
-#endif
 
     inline void FindIsotherm(float ri, float re, int n, int m, const std::vector<float>& internalTemps, const std::vector<float>& externalTemps)
     {
+        // Build Eq System.
         const double deltaTheta = 2.0 * pi / static_cast<double>(n);
         const double deltaRadius = (re - ri) / (static_cast<double>(m) + 1.0);
 
@@ -33,10 +27,20 @@ namespace mn
         {
             const int j = 1;
             // b(k) = coef(t_jm1k)
-            // A(k, k - 1) = coef(t_jkm1)
+            std::cout << "b(" << k << ") = t(" << j - 1 << ", " << k << ")\n";
+
+            // A(k, k - 1) = coef(t_jkm1);
+            std::cout << "A(" << k << ", " << n * (j - 1) + k - 1 << ") = t(" << j << ", " << k - 1 << ")\n";
+
             // A(k, k) = coef(t_jk)
+            std::cout << "A(" << k << ", " << n * (j - 1) + k << ") = t(" << j << ", " << k << ")\n";
+
             // A(k, k + 1) = coef(t_jkp1)
+            std::cout << "A(" << k << ", " << n * (j - 1) + k + 1 << ") = t(" << j << ", " << k + 1 << ")\n";
+
             // A(k, n*j + k) = coef(t_jp1k)
+            std::cout << "A(" << k << ", " << n * j + k << ") = t(" << j + 1 << ", " << k << ")\n";
+            std::cout << "=============================================\n";
         }
 
         // TODO: caso especial j = m - 1
@@ -88,7 +92,6 @@ namespace mn
                 std::cout << "=============================================\n";
             }
         }
-
     }
 
     inline void FindIsotherm(const InputParams& input, OutputParams& output)
@@ -99,5 +102,4 @@ namespace mn
             FindIsotherm(input.ri, input.re, input.n, input.m, inst.internalTemps, inst.externalTemps);
         }
     }
-    
 }
