@@ -13,7 +13,7 @@ namespace mn
         T* m_data = nullptr;
         int m_size = 0;
     public:
-        explicit VectorN(int size)
+        explicit VectorN(const int size)
             : m_data(nullptr)
             , m_size(size)
         {

@@ -4,26 +4,10 @@
 #include <sstream>
 #include <string>
 
-namespace metnum
+#include "Parameters.h"
+
+namespace mn
 {
-
-    struct Instance
-    {
-        std::vector<float> internalTemps;
-        std::vector<float> externalTemps;
-    };
-
-    struct InputParams
-    {
-        int ri{0};
-        int re{0};
-        int m{0};
-        int n{0};
-        int iso{0};
-        int ninst{0};
-        std::vector<Instance> instances;
-    };
-
     inline bool ReadInputFile(const std::filesystem::path& inputFilePath, InputParams& params)
     {
         if (!std::filesystem::exists(inputFilePath))
@@ -54,7 +38,7 @@ namespace metnum
             {
                 return false;
             }
-            iss.str(line);
+            std::istringstream values{ line };
 
             Instance& instance = params.instances.emplace_back();
 
@@ -64,7 +48,7 @@ namespace metnum
             for (int j = 0; j < params.n; ++j)
             {
                 float& temp = instance.internalTemps.emplace_back();
-                iss >> temp;
+                values >> temp;
             }
 
             // temp pared externa
@@ -72,15 +56,14 @@ namespace metnum
             for (int j = 0; j < params.n; ++j)
             {
                 float& temp = instance.externalTemps.emplace_back();
-                iss >> temp;
+                values >> temp;
             }
         }
 
-
-        return false;
+        return true;
     }
 
-    inline bool WriteOutputFile(const std::filesystem::path& outputFilePath)
+    inline bool WriteOutputFile(const std::filesystem::path& outputFilePath, const OutputParams& params)
     {
         // TODO
         return false;

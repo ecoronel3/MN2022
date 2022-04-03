@@ -1,11 +1,8 @@
 #include <filesystem>
 #include <iostream>
 
-#include "BackwardSustitution.h"
-#include "GaussianElimination.h"
-#include "MatrixN.h"
-#include "VectorN.h"
 #include "FileHelper.h"
+#include "FindIsotherm.h"
 
 int main(const int argc, char** argv)
 {
@@ -22,10 +19,12 @@ int main(const int argc, char** argv)
 	if (method == 0 // GaussianElimination
 		|| method == 1) // LU Factorization
 	{
-		metnum::InputParams iParams;
-		if (metnum::ReadInputFile(inputFile, iParams))
+		mn::InputParams iParams;
+		if (mn::ReadInputFile(inputFile, iParams))
 		{
-		    
+			mn::OutputParams oParams;
+			mn::FindIsotherm(iParams, oParams);
+			mn::WriteOutputFile(outputFile, oParams);
 		}
 	}
 	else
