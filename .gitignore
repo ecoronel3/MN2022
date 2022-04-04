@@ -30,5 +30,7 @@
 *.exe
 *.out
 *.app
-/tp1/src/out/build
-/.vs
+/tp1/src/out/*
+.vs/*
+.vscode/*
+build/*
