@@ -8,5 +8,15 @@ TEST(ForwardSubstitutionTest, M22Identity)
     mn::VectorNf x{ 0.0f, 0.0f };
 
     mn::ForwardSubstitution(A, b, x);
-    FAIL();
+
+    EXPECT_FLOAT_EQ(A(0,0), 1.0f);
+    EXPECT_FLOAT_EQ(A(1,0), 0.0f);
+    EXPECT_FLOAT_EQ(A(0,1), 0.0f);
+    EXPECT_FLOAT_EQ(A(1,1), 1.0f);
+
+    EXPECT_FLOAT_EQ(b(0), 1.0f);
+    EXPECT_FLOAT_EQ(b(1), 1.0f);
+
+    EXPECT_FLOAT_EQ(x(0), 1.0f);
+    EXPECT_FLOAT_EQ(x(1), 1.0f);
 }
