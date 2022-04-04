@@ -5,6 +5,7 @@
 #include "MatrixN.h"
 #include "Parameters.h"
 #include "VectorN.h"
+#include <cmath>
 
 namespace mn
 {
@@ -23,40 +24,58 @@ namespace mn
         std::cout << "=============================================\n";
 
         // TODO: caso especial j = 1
+        double radius = ri+deltaRadius;
         for (int k = 0; k < n; ++k)
         {
+            for (int i = 0; i < n*(m-1); i++) {
+                A(k,i) = 0.0;
+            }
             const int j = 1;
-            // b(k) = coef(t_jm1k)
+            const int row = k;
+            b(k) = -(internalTemps[k] * pow(radius*deltaTheta,2) - radius * deltaRadius * pow(deltaTheta, 2));
+
             std::cout << "b(" << k << ") = t(" << j - 1 << ", " << k << ")\n";
 
-            // A(k, k - 1) = coef(t_jkm1);
+            //(b + (a%b)) % b
+            A(row, (n + ((k-1)%n)) % n) = pow(deltaRadius,2);
             std::cout << "A(" << k << ", " << n * (j - 1) + k - 1 << ") = t(" << j << ", " << k - 1 << ")\n";
 
-            // A(k, k) = coef(t_jk)
+            A(row, row) = (-2)*pow(radius*deltaTheta,2) + radius*deltaRadius*pow(deltaTheta,2)
+                    - 2*pow(deltaRadius,2);
+
             std::cout << "A(" << k << ", " << n * (j - 1) + k << ") = t(" << j << ", " << k << ")\n";
 
-            // A(k, k + 1) = coef(t_jkp1)
+            A(row, (n + ((k+1)%n)) % n) = pow(deltaRadius, 2);
             std::cout << "A(" << k << ", " << n * (j - 1) + k + 1 << ") = t(" << j << ", " << k + 1 << ")\n";
 
-            // A(k, n*j + k) = coef(t_jp1k)
+            A(row, row + n) = pow(radius*deltaTheta,2);
             std::cout << "A(" << k << ", " << n * j + k << ") = t(" << j + 1 << ", " << k << ")\n";
             std::cout << "=============================================\n";
         }
 
         // TODO: caso especial j = m - 1
+        radius = re - deltaRadius;
         for (int k = 0; k < n; ++k)
         {
-            const int j = m - 1;
-            // A(n*(j-1) + k, n*(j-2) + k) = coef(t_jm1k)
-            // A(n*(j-1) + k, k - 1) = coef(t_jkm1)
-            // A(n*(j-1) + k, k) = coef(t_jk)
-            // A(n*(j-1) + k, k + 1) = coef(t_jkp1)
-            // b(n*j + k) = coef(t_jp1k)
+            for (int i = 0; i < n*(m-1); i++) {
+                A(k,i) = 0.0;
+            }
+
+            //const int j = m - 1;
+            const int row = n*(m - 2) + k;
+
+            A(row, row - n) = pow(radius*deltaTheta,2) - radius*deltaRadius*pow(deltaTheta,2);
+            A(row, n*(m-2) + (n + ((k-1)%n)) % n) = pow(deltaRadius,2);
+            A(row, row) = (-2)*pow(radius*deltaTheta,2) + radius*deltaRadius*pow(deltaTheta,2)
+                          - 2*pow(deltaRadius,2);
+            A(row, n*(m-2) + (n + ((k+1)%n)) % n) = pow(deltaRadius,2);
+            b(row) = -pow(radius*deltaTheta,2)*externalTemps[k];
         }
 
         for (int j = 2; j < m - 1; ++j)
         {
-            const float r_j = ri + deltaRadius * j;
+            radius = ri + deltaRadius * j;
+
 
             // t_jm1k
             // t_jk            
@@ -73,8 +92,15 @@ namespace mn
             for (int k = 0; k < n; ++k)
             {
                 const auto row = n * (j - 1) + k;
+                b(row) = 0.0;
+                A(row, row - n) = pow(radius*deltaTheta,2) - radius*deltaRadius*pow(deltaTheta,2);
+                A(row, n*(j-1) + (n + ((k-1)%n)) % n) = pow(deltaRadius,2);
+                A(row, row) = (-2)*pow(radius*deltaTheta,2) + radius*deltaRadius*pow(deltaTheta,2)
+                              - 2*pow(deltaRadius,2);
+                A(row, n*(j-1) + (n + ((k+1)%n)) % n) = pow(deltaRadius,2);
+                A(row, row + n) = pow(radius*deltaTheta,2);
 
-                // A(n*(j-1) + k, n*(j-2) + k) = coef(t_jm1k)
+
                 std::cout << "A(" << row << ", " << n * (j - 2) + k << ") = t(" << j - 1 << ", " << k << ")\n";
 
                 // A(n*(j-1) + k, n*(j-1) + k - 1) = coef(t_jkm1)
