@@ -34,3 +34,5 @@
 .vs/*
 .vscode/*
 build/*
+tp1/build/*
+tp1/.vscode/*
