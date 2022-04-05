@@ -28,6 +28,7 @@ TEST(ForwardSubstitutionTest, M33Diagonal)
     mn::VectorNf x = { 0.0f, 0.0f, 0.0f };
 
     mn::ForwardSubstitution(A, b, x);
+
     EXPECT_FLOAT_EQ(A(0,0), 2.0f);
     EXPECT_FLOAT_EQ(A(0,1), 0.0f);
     EXPECT_FLOAT_EQ(A(0,2), 0.0f);
@@ -44,8 +45,24 @@ TEST(ForwardSubstitutionTest, M33Diagonal)
     EXPECT_FLOAT_EQ(b(1), 9.0f);
     EXPECT_FLOAT_EQ(b(2), 16.0f);    
 
-    // complete solution!
-    //EXPECT_FLOAT_EQ(x(0), 1.0f);
-    //EXPECT_FLOAT_EQ(x(1), 1.0f);
-    //EXPECT_FLOAT_EQ(x(2), 1.0f);
+    EXPECT_FLOAT_EQ(x(0), 1.5f);
+    EXPECT_FLOAT_EQ(x(1), 2.25f);
+    EXPECT_FLOAT_EQ(x(2), 2.0f);
+}
+
+TEST(ForwardSusbtitutionTest, M44)
+{
+    mn::MatrixNf A = {  { 1.0f, 0.0f, 0.0f, 14.0f },
+                        { 0.0f, 4.0f, 0.0f, 1.0f },
+                        { 0.0f, 0.0f, 4.0f, 1.0f },
+                        { 0.0f, 0.0f, 0.0f, 6.0f }, };
+    mn::VectorNf b = { 42.0f, 16.0f, 8.0f, 6.0f };
+    mn::VectorNf x{ 0.0f, 0.0f, 0.0f, 0.0f };
+
+    mn::ForwardSubstitution(A, b, x);
+
+    EXPECT_FLOAT_EQ(x(0), 28.0f);
+    EXPECT_FLOAT_EQ(x(1), 3.75f);
+    EXPECT_FLOAT_EQ(x(2), 1.75f);
+    EXPECT_FLOAT_EQ(x(3), 1.0f);
 }
