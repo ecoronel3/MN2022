@@ -60,9 +60,9 @@ TEST(ForwardSusbtitutionTest, M44)
     mn::VectorNf x{ 0.0f, 0.0f, 0.0f, 0.0f };
 
     mn::ForwardSubstitution(A, b, x);
-
-    EXPECT_FLOAT_EQ(x(0), 28.0f);
-    EXPECT_FLOAT_EQ(x(1), 3.75f);
-    EXPECT_FLOAT_EQ(x(2), 1.75f);
-    EXPECT_FLOAT_EQ(x(3), 1.0f);
+ 
+    EXPECT_EQ(x(0), 42);
+    EXPECT_EQ(x(1), 4);
+    EXPECT_EQ(x(2), 2);
+    EXPECT_EQ(x(3), 1);
 }
