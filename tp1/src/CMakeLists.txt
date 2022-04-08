@@ -19,7 +19,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-ADD_EXECUTABLE(tp1Test "tests/GaussianEliminationTest.cpp" "tests/BackwardSustitutionTest.cpp" "tests/ForwardSubstitutionTest.cpp" "tests/LUFactorizationTest.cpp")
+ADD_EXECUTABLE(tp1Test "tests/MatrixNTest.cpp" "tests/GaussianEliminationTest.cpp" "tests/BackwardSustitutionTest.cpp" "tests/ForwardSubstitutionTest.cpp" "tests/LUFactorizationTest.cpp")
 TARGET_INCLUDE_DIRECTORIES(tp1Test PUBLIC .)
 TARGET_LINK_LIBRARIES(tp1Test gtest_main)
 

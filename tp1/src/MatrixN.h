@@ -47,10 +47,64 @@ namespace mn
             m_data = nullptr;
         }
 
-        MatrixN(MatrixN const&) = delete;
-        MatrixN(MatrixN&&) = delete;
-        void operator=(MatrixN const&) = delete;
-        void operator=(MatrixN&&) = delete;
+        MatrixN(MatrixN const& rhs)
+            : m_n(rhs.m_n)
+        {
+            m_data = new T[m_n*m_n]{};
+            std::copy(rhs.m_data, rhs.m_data + m_n*m_n, m_data);
+        }
+
+        MatrixN(MatrixN&& rhs) 
+        {
+            m_n = rhs.m_n;
+            m_data = rhs.m_data;
+            rhs.m_n = 0;
+            rhs.m_data = nullptr;
+        }
+
+        MatrixN& operator=(MatrixN const& rhs)
+        {
+            m_n = rhs.m_n;
+            m_data = new T[m_n*m_n]{};
+            std::copy(rhs.m_data, rhs.m_data + m_n*m_n, m_data);
+            return *this;
+        }
+
+        MatrixN& operator=(MatrixN&& rhs)
+        {
+            m_n = rhs.m_n;
+            m_data = rhs.m_data;
+            rhs.m_n = 0;
+            rhs.m_data = nullptr;
+
+            return *this;
+        }
+
+        bool operator==(MatrixN const& rhs) const
+        {
+            if (m_n != rhs.m_n)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < m_n; ++i)
+            {
+                for (int j = 0; j < m_n; ++j)
+                {
+                    if ( std::abs(this->operator()(i, j) - rhs(i, j)) > std::numeric_limits<T>::epsilon())
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        bool operator!=(MatrixN const& rhs) const
+        {
+            return !(*this == rhs);
+        }
 
         T operator()(int i, int j) const { return m_data[m_n*i+j]; }
 
@@ -61,6 +115,33 @@ namespace mn
         int cols() const { return m_n; }
 
         T* get_data() { return m_data; }
+
+        static MatrixN<T> zeros(const int n) 
+        {
+            MatrixN<T> m{n};
+            constexpr T zero{0};
+            for(int i = 0; i < n; ++i)
+            {
+                for(int j = 0; j < n; ++j)
+                {
+                    m(i, j) = zero;
+                }
+            }
+            return m;
+        }
+
+        static MatrixN<T> identity(const int n) 
+        {
+            auto m = MatrixN<T>::zeros(n);
+            constexpr T one{1};
+            for(int i = 0; i < n; ++i)            
+            {
+                m(i, i) = one;
+            }
+
+            return m;
+        }
+
     };
 
     template <typename T>
