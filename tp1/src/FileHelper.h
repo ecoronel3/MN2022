@@ -65,7 +65,21 @@ namespace mn
 
     inline bool WriteOutputFile(const std::filesystem::path& outputFilePath, const OutputParams& params)
     {
-        // TODO
-        return false;
+        std::ofstream file{ outputFilePath, std::ios::trunc };
+        if (!file.is_open())
+        {
+            return false;
+        }
+
+        for(const auto& sol: params.soluciones)
+        {
+            for(int i = 0; i < sol.size(); ++i)
+            {
+                file << sol(i) << '\n';
+            }
+        }
+        file.close();
+
+        return true;
     }
 }

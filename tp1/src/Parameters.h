@@ -25,6 +25,6 @@ namespace mn
 
     struct OutputParams
     {
-        VectorNf solucion;
+        std::vector<VectorNf> soluciones;
     };
 }

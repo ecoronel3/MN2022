@@ -96,8 +96,8 @@ namespace mn
                 VectorNf y = ForwardSubstitution(L, b);                
                 BackwardSubstitution(U, y, x);
             }
-            
-            output.solucion = x;
+
+            output.soluciones.emplace_back(x);
         }
     }
 }
