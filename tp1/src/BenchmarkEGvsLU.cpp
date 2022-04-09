@@ -56,6 +56,7 @@ int main(int argc, char* argv[])
     mn::InputParams input;
     if (mn::ReadInputFile(inputFile, input))
     {
+        std::cout << input.n << ' ' << input.m << ' ';
         std::cout << testEG(input, count);
         std::cout << ' ';
         std::cout << testLU(input, count);

@@ -36,7 +36,7 @@ namespace mn
     {
         const int n = A.rows();
         auto U = A;
-        auto L = MatrixN<T>::identity(n);      
+        auto L = MatrixN<T>::identity(n);
 
         for (int i = 0; i < n-1; ++i)
         {
@@ -46,14 +46,13 @@ namespace mn
                 const T a_ji = U(j, i);
                 const T m_ji = a_ji/a_ii;
 
-                for (int k = i; k < n + 1; ++k)
+                for (int k = i; k < n; ++k)
                 {
                     U(j, k) -= m_ji * U(i, k);
                 }
                 L(j, i) = m_ji;
             }
         }
-
-        return {L, U};
+        return {std::move(L), std::move(U)};
     }
 }

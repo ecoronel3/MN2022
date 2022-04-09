@@ -117,8 +117,10 @@ namespace mn
         for (const Instance& inst: input.instances)
         {
             auto b = BuildVector(input.ri, input.re, input.m, input.n, inst.internalTemps, inst.externalTemps);
+
             auto x = VectorNf::zeros(b.size());
             auto [L, U] = LUFactorization(A);
+            
             VectorNf y = ForwardSubstitution(L, b);
             BackwardSubstitution(U, y, x);
             output.soluciones.emplace_back(x);

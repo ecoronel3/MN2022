@@ -44,13 +44,13 @@ namespace mn
             : m_size(rhs.m_size)
         {
             m_data = new T[m_size]{};
-            std::copy(rhs.m_data, rhs.m_data + m_size, m_data);
+            std::memcpy(m_data, rhs.m_data, m_size*sizeof(T));
         }
 
         VectorN(VectorN&& rhs)
+            : m_data(rhs.m_data)
+            , m_size(rhs.m_size)
         {
-            m_size = rhs.m_size;
-            m_data = rhs.m_data;            
             rhs.m_size = 0;
             rhs.m_data = nullptr;
         }
@@ -59,7 +59,7 @@ namespace mn
         {
             m_size = rhs.m_size;
             m_data = new T[m_size]{};
-            std::copy(rhs.m_data, rhs.m_data + m_size, m_data);
+            std::memcpy(m_data, rhs.m_data, m_size*sizeof(T));
             return *this;
         }
         
