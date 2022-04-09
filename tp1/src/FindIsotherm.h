@@ -12,7 +12,7 @@ namespace mn
 {
     constexpr float pi = 3.141592653589793f;
 
-    MatrixNf BuildMatrix(float ri, float re, int m, int n)
+    inline MatrixNf BuildMatrix(float ri, float re, int m, int n)
     {
         auto A = MatrixNf::zeros(n * (m - 1));
         
@@ -71,7 +71,7 @@ namespace mn
         return A;
     }
 
-    VectorNf BuildVector(float ri, float re, int m, int n, const std::vector<float>& internalTemps, const std::vector<float>& externalTemps)
+    inline VectorNf BuildVector(float ri, float re, int m, int n, const std::vector<float>& internalTemps, const std::vector<float>& externalTemps)
     {
         auto b = VectorNf::zeros(n * (m - 1));
         
@@ -98,28 +98,42 @@ namespace mn
         return b;
     }
 
-    inline void FindIsotherm(const int method, const InputParams& input, OutputParams& output)
+    inline void FindIsothermEG(const InputParams& input, OutputParams& output)
+    {
+        for (const Instance& inst: input.instances)
+        {
+            auto A = BuildMatrix(input.ri, input.re, input.m, input.n);
+            auto b = BuildVector(input.ri, input.re, input.m, input.n, inst.internalTemps, inst.externalTemps);
+            auto x = VectorNf::zeros(b.size());
+            GaussianElimination(A, b);
+            BackwardSubstitution(A, b, x);
+            output.soluciones.emplace_back(x);
+        }
+    }
+
+    inline void FindIsothermLU(const InputParams& input, OutputParams& output)
     {
         auto A = BuildMatrix(input.ri, input.re, input.m, input.n);
         for (const Instance& inst: input.instances)
         {
             auto b = BuildVector(input.ri, input.re, input.m, input.n, inst.internalTemps, inst.externalTemps);
             auto x = VectorNf::zeros(b.size());
-
-            if (method == 0)
-            {
-                GaussianElimination(A, b);
-                BackwardSubstitution(A, b, x);
-
-            }
-            else if (method == 1)
-            {
-                auto [L, U] = LUFactorization(A);
-                VectorNf y = ForwardSubstitution(L, b);                
-                BackwardSubstitution(U, y, x);
-            }
-
+            auto [L, U] = LUFactorization(A);
+            VectorNf y = ForwardSubstitution(L, b);
+            BackwardSubstitution(U, y, x);
             output.soluciones.emplace_back(x);
+        }
+    }
+
+    inline void FindIsotherm(const int method, const InputParams& input, OutputParams& output)
+    {
+        if (method == 0)
+        {
+            FindIsothermEG(input, output);
+        }
+        else if (method == 1)
+        {
+            FindIsothermLU(input, output);
         }
     }
 }
