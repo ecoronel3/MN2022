@@ -23,7 +23,7 @@ int main(const int argc, char** argv)
 		if (mn::ReadInputFile(inputFile, iParams))
 		{
 			mn::OutputParams oParams;
-			mn::FindIsotherm(iParams, oParams);
+			mn::FindIsotherm(method, iParams, oParams);
 			mn::WriteOutputFile(outputFile, oParams);
 		}
 	}

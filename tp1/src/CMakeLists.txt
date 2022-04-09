@@ -1,4 +1,5 @@
-PROJECT(tp1)
+cmake_policy(SET CMP0048 NEW)
+PROJECT(tp1 VERSION 1.0.0)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.11)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -19,7 +20,17 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-ADD_EXECUTABLE(tp1Test "tests/MatrixNTest.cpp" "tests/GaussianEliminationTest.cpp" "tests/BackwardSustitutionTest.cpp" "tests/ForwardSubstitutionTest.cpp" "tests/LUFactorizationTest.cpp")
+ADD_EXECUTABLE(tp1Test 
+  "tests/VectorNTest.cpp"
+  "tests/MatrixNTest.cpp"
+  "tests/GaussianEliminationTest.cpp"
+  "tests/BackwardSustitutionTest.cpp"
+  "tests/ForwardSubstitutionTest.cpp"
+  "tests/LUFactorizationTest.cpp"
+  "tests/FindIsothermTest.cpp"
+  )
+  
+
 TARGET_INCLUDE_DIRECTORIES(tp1Test PUBLIC .)
 TARGET_LINK_LIBRARIES(tp1Test gtest_main)
 

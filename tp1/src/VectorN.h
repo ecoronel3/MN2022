@@ -13,6 +13,8 @@ namespace mn
         T* m_data = nullptr;
         int m_size = 0;
     public:
+        VectorN() = default;
+
         explicit VectorN(const int size)
             : m_data(nullptr)
             , m_size(size)
@@ -38,18 +40,78 @@ namespace mn
             m_data = nullptr;
         }
 
-        VectorN(VectorN const&) = delete;
-        VectorN(VectorN&&) = delete;
-        void operator=(VectorN const&) = delete;
-        void operator=(VectorN&&) = delete;
+        VectorN(VectorN const& rhs)
+            : m_size(rhs.m_size)
+        {
+            m_data = new T[m_size]{};
+            std::copy(rhs.m_data, rhs.m_data + m_size, m_data);
+        }
+
+        VectorN(VectorN&& rhs)
+        {
+            m_size = rhs.m_size;
+            m_data = rhs.m_data;            
+            rhs.m_size = 0;
+            rhs.m_data = nullptr;
+        }
+
+        VectorN& operator=(const VectorN& rhs)
+        {
+            m_size = rhs.m_size;
+            m_data = new T[m_size]{};
+            std::copy(rhs.m_data, rhs.m_data + m_size, m_data);
+            return *this;
+        }
+        
+        VectorN& operator=(VectorN&& rhs)
+        {
+            m_size = rhs.m_size;
+            m_data = rhs.m_data;
+            rhs.m_size = 0;
+            rhs.m_data = nullptr;
+            return *this;
+        }
 
         T operator()(int i) const { return m_data[i]; }
 
         T& operator()(int i) { return m_data[i]; }
 
+        bool operator==(const VectorN& rhs) const
+        {
+            if (m_size != rhs.m_size)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < m_size; ++i)
+            {
+                if ( std::abs(this->operator()(i) - rhs(i)) > std::numeric_limits<T>::epsilon())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        bool operator!=(const VectorN& rhs) const
+        {
+            return !(*this == rhs);
+        }
+
         int size() const { return m_size; }
 
         T* get_data() { return m_data; }
+
+        static VectorN<T> zeros(const int size) 
+        {
+            VectorN<T> v(size);
+            constexpr T zero{0};
+            for(int i = 0; i < size; ++i)
+            {
+                v(i) = zero;
+            }
+            return v;
+        }
     };
 
     template <typename T>

@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "VectorN.h"
+
 namespace mn
 {
     struct Instance
@@ -16,13 +18,13 @@ namespace mn
         float re{ 0.0f };
         int m{ 0 };
         int n{ 0 };
-        int iso{ 0 };
+        float iso{ 0 };
         int ninst{ 0 };
         std::vector<Instance> instances;
     };
 
     struct OutputParams
     {
-        // TODO
+        VectorNf solucion;
     };
 }

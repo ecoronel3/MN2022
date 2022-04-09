@@ -20,4 +20,21 @@ namespace mn
             x(i) = (b(i) - acum) / A(i, i);
         }
     }
+
+    template <typename T, typename = std::enable_if_t<std::is_floating_point_v<T>> >    
+    VectorN<T> ForwardSubstitution(const MatrixN<T>& A, const VectorN<T>& b)
+    {
+        auto x = VectorN<T>::zeros(b.size());
+        for (int i = 0; i < A.rows(); ++i) 
+        {
+            T acum{0.0};
+            for (int j = 0; j < i; ++j) 
+            {
+                acum += x(j)*A(i, j);
+            }
+            x(i) = (b(i) - acum) / A(i, i);
+        }
+
+        return x;
+    }
 }
