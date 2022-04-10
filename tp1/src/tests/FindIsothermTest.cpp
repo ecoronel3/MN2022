@@ -92,9 +92,9 @@ TEST(FindIsothermTest, FindIsothermGE)
     mn::OutputParams output;
     mn::FindIsotherm(0, input, output);
 
-    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381);
-    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342);
-    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532);
+    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381f);
+    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342f);
+    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532f);
 }
 
 TEST(FindIsothermTest, FindIsothermLU)
@@ -116,7 +116,7 @@ TEST(FindIsothermTest, FindIsothermLU)
     mn::OutputParams output;
     mn::FindIsotherm(1, input, output);
 
-    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381);
-    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342);
-    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532);
+    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381f);
+    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342f);
+    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532f);
 }
