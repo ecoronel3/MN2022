@@ -1,8 +1,8 @@
-# Install script for directory: D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src/googlemock
+# Install script for directory: /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src/googlemock
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/tp1")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,32 +34,32 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2021.3.4/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "/usr/bin/objdump.exe")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src/googlemock/include/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src/googlemock/include/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/lib/libgmockd.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/lib/libgmockd.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/lib/libgmock_maind.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/lib/libgmock_maind.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/generated/gmock.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/generated/gmock.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/generated/gmock_main.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/generated/gmock_main.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/cmake_install.cmake")
+  include("/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googletest/cmake_install.cmake")
 
 endif()
 

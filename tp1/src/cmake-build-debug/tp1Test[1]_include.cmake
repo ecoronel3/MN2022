@@ -1,5 +1,5 @@
-if(EXISTS "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/tp1Test[1]_tests.cmake")
-  include("D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/tp1Test[1]_tests.cmake")
+if(EXISTS "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/tp1Test[1]_tests.cmake")
+  include("/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/tp1Test[1]_tests.cmake")
 else()
   add_test(tp1Test_NOT_BUILT tp1Test_NOT_BUILT)
 endif()

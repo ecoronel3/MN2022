@@ -22,29 +22,10 @@ rule CUSTOM_COMMAND
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__tp1_Debug
-  depfile = $DEP_FILE
-  deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX executable.
-
-rule CXX_EXECUTABLE_LINKER__tp1_Debug
-  command = cmd.exe /C "$PRE_LINK && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
-  description = Linking CXX executable $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
 rule CXX_COMPILER__tp1Test_Debug
   depfile = $DEP_FILE
   deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building CXX object $out
 
 
@@ -52,7 +33,45 @@ rule CXX_COMPILER__tp1Test_Debug
 # Rule for linking CXX executable.
 
 rule CXX_EXECUTABLE_LINKER__tp1Test_Debug
-  command = cmd.exe /C "$PRE_LINK && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  command = $PRE_LINK && /usr/bin/c++.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__BenchmarkEGvsLU_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__BenchmarkEGvsLU_Debug
+  command = $PRE_LINK && /usr/bin/c++.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__tp1_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__tp1_Debug
+  command = $PRE_LINK && /usr/bin/c++.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
 
@@ -63,7 +82,7 @@ rule CXX_EXECUTABLE_LINKER__tp1Test_Debug
 rule CXX_COMPILER__gmock_main_Debug
   depfile = $DEP_FILE
   deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building CXX object $out
 
 
@@ -71,7 +90,7 @@ rule CXX_COMPILER__gmock_main_Debug
 # Rule for linking CXX static library.
 
 rule CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug
-  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  command = $PRE_LINK && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E rm -f $TARGET_FILE && /usr/bin/ar.exe qc $TARGET_FILE $LINK_FLAGS $in && /usr/bin/ranlib.exe $TARGET_FILE && $POST_BUILD
   description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
@@ -82,7 +101,7 @@ rule CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug
 rule CXX_COMPILER__gmock_Debug
   depfile = $DEP_FILE
   deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building CXX object $out
 
 
@@ -90,26 +109,7 @@ rule CXX_COMPILER__gmock_Debug
 # Rule for linking CXX static library.
 
 rule CXX_STATIC_LIBRARY_LINKER__gmock_Debug
-  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
-  description = Linking CXX static library $TARGET_FILE
-  restat = $RESTAT
-
-
-#############################################
-# Rule for compiling CXX files.
-
-rule CXX_COMPILER__gtest_Debug
-  depfile = $DEP_FILE
-  deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
-  description = Building CXX object $out
-
-
-#############################################
-# Rule for linking CXX static library.
-
-rule CXX_STATIC_LIBRARY_LINKER__gtest_Debug
-  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  command = $PRE_LINK && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E rm -f $TARGET_FILE && /usr/bin/ar.exe qc $TARGET_FILE $LINK_FLAGS $in && /usr/bin/ranlib.exe $TARGET_FILE && $POST_BUILD
   description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
@@ -120,7 +120,7 @@ rule CXX_STATIC_LIBRARY_LINKER__gtest_Debug
 rule CXX_COMPILER__gtest_main_Debug
   depfile = $DEP_FILE
   deps = gcc
-  command = C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\G__~1.EXE $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building CXX object $out
 
 
@@ -128,7 +128,26 @@ rule CXX_COMPILER__gtest_main_Debug
 # Rule for linking CXX static library.
 
 rule CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug
-  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  command = $PRE_LINK && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E rm -f $TARGET_FILE && /usr/bin/ar.exe qc $TARGET_FILE $LINK_FLAGS $in && /usr/bin/ranlib.exe $TARGET_FILE && $POST_BUILD
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__gtest_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = /usr/bin/c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__gtest_Debug
+  command = $PRE_LINK && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E rm -f $TARGET_FILE && /usr/bin/ar.exe qc $TARGET_FILE $LINK_FLAGS $in && /usr/bin/ranlib.exe $TARGET_FILE && $POST_BUILD
   description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
@@ -137,7 +156,7 @@ rule CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SD:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src -BD:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug
+  command = /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe --regenerate-during-build -S/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src -B/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 
@@ -146,7 +165,7 @@ rule RERUN_CMAKE
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = "C:\Program Files\JetBrains\CLion 2021.3.4\bin\ninja\win\ninja.exe" $FILE_ARG -t clean $TARGETS
+  command = "/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe" $FILE_ARG -t clean $TARGETS
   description = Cleaning all built files...
 
 
@@ -154,6 +173,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = "C:\Program Files\JetBrains\CLion 2021.3.4\bin\ninja\win\ninja.exe" -t targets
+  command = "/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe" -t targets
   description = All primary targets available:
 

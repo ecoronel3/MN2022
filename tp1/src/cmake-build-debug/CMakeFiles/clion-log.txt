@@ -1,17 +1,43 @@
-"C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/win/ninja.exe" -G Ninja D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src
-CMake Warning (dev) at CMakeLists.txt:1 (PROJECT):
-  Policy CMP0048 is not set: project() command manages VERSION variables.
-  Run "cmake --help-policy CMP0048" for policy details.  Use the cmake_policy
-  command to set the policy and suppress this warning.
+C:\Users\gromc\AppData\Local\JetBrains\CLion2021.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/cygdrive/c/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/cygwin/ninja.exe" -G Ninja /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+CMake Warning at /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/Platform/CYGWIN.cmake:15 (message):
+  CMake no longer defines WIN32 on Cygwin!
 
-  The following variable(s) would be set to empty:
+  (1) If you are just trying to build this project, ignore this warning or
+  quiet it by setting CMAKE_LEGACY_CYGWIN_WIN32=0 in your environment or in
+  the CMake cache.  If later configuration or build errors occur then this
+  project may have been written under the assumption that Cygwin is WIN32.
+  In that case, set CMAKE_LEGACY_CYGWIN_WIN32=1 instead.
 
-    CMAKE_PROJECT_VERSION
-    CMAKE_PROJECT_VERSION_MAJOR
-    CMAKE_PROJECT_VERSION_MINOR
-    CMAKE_PROJECT_VERSION_PATCH
-This warning is for project developers.  Use -Wno-dev to suppress it.
+  (2) If you are developing this project, add the line
 
+    set(CMAKE_LEGACY_CYGWIN_WIN32 0) # Remove when CMake >= 2.8.4 is required
+
+  at the top of your top-level CMakeLists.txt file or set the minimum
+  required version of CMake to 2.8.4 or higher.  Then teach your project to
+  build on Cygwin without WIN32.
+Call Stack (most recent call first):
+  /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeSystemSpecificInformation.cmake:27 (include)
+  CMakeLists.txt:2 (PROJECT)
+
+
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /usr/bin/python3.9.exe (found version "3.9.10") found components: Interpreter 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug
+-- Build files have been written to: /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug

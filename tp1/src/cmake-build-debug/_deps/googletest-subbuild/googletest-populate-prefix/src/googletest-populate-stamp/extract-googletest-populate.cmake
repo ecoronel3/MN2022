@@ -1,7 +1,7 @@
 # Make file names absolute:
 #
-get_filename_component(filename "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/e2239ee6043f73722e7aa812a459f54a28552929.zip" ABSOLUTE)
-get_filename_component(directory "D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src" ABSOLUTE)
+get_filename_component(filename "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/e2239ee6043f73722e7aa812a459f54a28552929.zip" ABSOLUTE)
+get_filename_component(directory "/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

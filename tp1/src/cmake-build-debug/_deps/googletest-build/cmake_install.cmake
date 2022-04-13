@@ -1,8 +1,8 @@
-# Install script for directory: D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src
+# Install script for directory: /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/tp1")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,12 +34,12 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2021.3.4/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "/usr/bin/objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
+  include("/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build/googlemock/cmake_install.cmake")
 
 endif()
 

@@ -27,128 +27,128 @@ ninja_required_version = 1.5
 #############################################
 # Include rules file.
 
-include CMakeFiles\rules.ninja
+include CMakeFiles/rules.ninja
 
 # =============================================================================
 
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = D$:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild\
+cmake_ninja_workdir = /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/
 
 #############################################
-# Utility command for googletest-populate
+# Utility command for rebuild_cache
 
-build googletest-populate: phony CMakeFiles\googletest-populate CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe --regenerate-during-build -S/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild -B/cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for edit_cache
 
-build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build edit_cache: phony CMakeFiles\edit_cache.util
+build edit_cache: phony CMakeFiles/edit_cache.util
 
 
 #############################################
-# Utility command for rebuild_cache
+# Utility command for googletest-populate
 
-build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SD:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild -BD:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build rebuild_cache: phony CMakeFiles\rebuild_cache.util
+build googletest-populate: phony CMakeFiles/googletest-populate CMakeFiles/googletest-populate-complete googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update
 
 
 #############################################
-# Phony custom command for CMakeFiles\googletest-populate
+# Phony custom command for CMakeFiles/googletest-populate
 
-build CMakeFiles\googletest-populate | ${cmake_ninja_workdir}CMakeFiles\googletest-populate: phony CMakeFiles\googletest-populate-complete
+build CMakeFiles/googletest-populate | ${cmake_ninja_workdir}CMakeFiles/googletest-populate: phony CMakeFiles/googletest-populate-complete
 
 
 #############################################
-# Custom command for CMakeFiles\googletest-populate-complete
+# Custom command for CMakeFiles/googletest-populate-complete
 
-build CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done | ${cmake_ninja_workdir}CMakeFiles\googletest-populate-complete ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done"
+build CMakeFiles/googletest-populate-complete googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done | ${cmake_ninja_workdir}CMakeFiles/googletest-populate-complete ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done
   DESC = Completed 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-build && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build
   DESC = No build step for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure: CUSTOM_COMMAND googletest-populate-prefix\tmp\googletest-populate-cfgcmd.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-build && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure: CUSTOM_COMMAND googletest-populate-prefix/tmp/googletest-populate-cfgcmd.txt googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure
   DESC = No configure step for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-urlinfo.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -P D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/download-googletest-populate.cmake && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -P D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/verify-googletest-populate.cmake && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -P D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/extract-googletest-populate.cmake && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-urlinfo.txt googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -P /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/download-googletest-populate.cmake && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -P /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/verify-googletest-populate.cmake && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -P /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/extract-googletest-populate.cmake && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download
   DESC = Performing download step (download, verify and extract) for 'googletest-populate'
   pool = console
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-build && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install
   DESC = No install step for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E make_directory D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir: CUSTOM_COMMAND
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-src && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E make_directory /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir
   DESC = Creating directories for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch
   DESC = No patch step for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-build && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-build && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test
   DESC = No test step for 'googletest-populate'
   restat = 1
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
+# Custom command for googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download
-  COMMAND = cmd.exe /C "cd /D D:\0-Facu\2022-1C-MetNum\tp1\MN2022\tp1\src\cmake-build-debug\_deps\googletest-subbuild && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo_append && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E touch D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update"
+build googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update | ${cmake_ninja_workdir}googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update: CUSTOM_COMMAND googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download
+  COMMAND = cd /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E echo_append && /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/bin/cmake.exe -E touch /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update
   DESC = No update step for 'googletest-populate'
   pool = console
   restat = 1
@@ -162,7 +162,7 @@ build googletest-populate-prefix\src\googletest-populate-stamp\googletest-popula
 # =============================================================================
 
 #############################################
-# Folder: D:/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild
+# Folder: /cygdrive/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/cmake-build-debug/_deps/googletest-subbuild
 
 build all: phony googletest-populate
 
@@ -173,14 +173,14 @@ build all: phony googletest-populate
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\ExternalProject-download.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\ExternalProject.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\RepositoryInfo.txt.in CMakeCache.txt CMakeFiles\3.21.1\CMakeSystem.cmake CMakeLists.txt googletest-populate-prefix\tmp\googletest-populate-cfgcmd.txt.in
+build build.ninja: RERUN_CMAKE | /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeGenericSystem.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeInitializeConfigs.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeSystemSpecificInformation.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeSystemSpecificInitialize.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/ExternalProject-download.cmake.in /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/ExternalProject.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/Platform/CYGWIN.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/Platform/UnixPaths.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/RepositoryInfo.txt.in CMakeCache.txt CMakeFiles/3.21.1/CMakeSystem.cmake CMakeLists.txt googletest-populate-prefix/tmp/googletest-populate-cfgcmd.txt.in
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\ExternalProject-download.cmake.in C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\ExternalProject.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\JetBrains\CLion$ 2021.3.4\bin\cmake\win\share\cmake-3.21\Modules\RepositoryInfo.txt.in CMakeCache.txt CMakeFiles\3.21.1\CMakeSystem.cmake CMakeLists.txt googletest-populate-prefix\tmp\googletest-populate-cfgcmd.txt.in: phony
+build /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeGenericSystem.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeInitializeConfigs.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeSystemSpecificInformation.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/CMakeSystemSpecificInitialize.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/ExternalProject-download.cmake.in /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/ExternalProject.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/Platform/CYGWIN.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/Platform/UnixPaths.cmake /cygdrive/c/Users/gromc/AppData/Local/JetBrains/CLion2021.3/cygwin_cmake/share/cmake-3.21.1/Modules/RepositoryInfo.txt.in CMakeCache.txt CMakeFiles/3.21.1/CMakeSystem.cmake CMakeLists.txt googletest-populate-prefix/tmp/googletest-populate-cfgcmd.txt.in: phony
 
 
 #############################################
