@@ -4,6 +4,8 @@
 #include "FileHelper.h"
 #include "FindIsotherm.h"
 
+using FPType = double;
+
 int main(const int argc, char** argv)
 {
 	if (argc != 4)

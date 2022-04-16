@@ -5,44 +5,44 @@
 
 namespace
 {
-    constexpr float pi = 3.141592653589793f;
+    constexpr double pi = 3.141592653589793;
 }
 
 TEST(FindIsothermTest, BuildMatrix)
 {
     const int n = 6;
     const int m = 4;
-    const float ri = 4.0f;
-    const float re = 5.0f;
+    const double ri = 4.0f;
+    const double re = 5.0f;
 
     auto A = mn::BuildMatrix(ri, re, m, n);
     
     EXPECT_EQ(A.rows(), (m - 1) * n );
     EXPECT_EQ(A.cols(), (m - 1) * n );
 
-    const float r1 = 4.25;
-    const float delta_r = (re - ri) / static_cast<float>(m);
-    const float sqDelta_r = delta_r * delta_r;
+    const double r1 = 4.25;
+    const double delta_r = (re - ri) / static_cast<double>(m);
+    const double sqDelta_r = delta_r * delta_r;
 
-    const float delta_t = 2.0f*pi / static_cast<float>(n);
-    const float sqDelta_t = delta_t*delta_t;
+    const double delta_t = 2.0f*pi / static_cast<double>(n);
+    const double sqDelta_t = delta_t*delta_t;
     
     // matriz
-    EXPECT_FLOAT_EQ(A(0, 0),  -2.0f*r1*r1*sqDelta_t + r1*delta_r*sqDelta_t - 2.0f*sqDelta_r );
-    EXPECT_FLOAT_EQ(A(0, 1), sqDelta_r);
-    EXPECT_FLOAT_EQ(A(0, 2),  0.0f);
-    EXPECT_FLOAT_EQ(A(0, 3),  0.0f);
-    EXPECT_FLOAT_EQ(A(0, 4),  0.0f);
-    EXPECT_FLOAT_EQ(A(0, 5), sqDelta_r);
-    EXPECT_FLOAT_EQ(A(0, 6), r1*r1*sqDelta_t);
+    EXPECT_DOUBLE_EQ(A(0, 0),  -2.0f*r1*r1*sqDelta_t + r1*delta_r*sqDelta_t - 2.0f*sqDelta_r );
+    EXPECT_DOUBLE_EQ(A(0, 1), sqDelta_r);
+    EXPECT_DOUBLE_EQ(A(0, 2),  0.0f);
+    EXPECT_DOUBLE_EQ(A(0, 3),  0.0f);
+    EXPECT_DOUBLE_EQ(A(0, 4),  0.0f);
+    EXPECT_DOUBLE_EQ(A(0, 5), sqDelta_r);
+    EXPECT_DOUBLE_EQ(A(0, 6), r1*r1*sqDelta_t);
 }
 
 TEST(FindIsothermTest, BuildVector)
 {
     const int n = 6;
     const int m = 4;
-    const float ri = 4.0f;
-    const float re = 5.0f;
+    const double ri = 4.0f;
+    const double re = 5.0f;
 
     auto b = mn::BuildVector(ri, re, m, n, 
         { 1500.0f, 1500.0f, 1500.0f, 1500.0f, 1500.0f, 1500.0f },
@@ -50,26 +50,26 @@ TEST(FindIsothermTest, BuildVector)
     
     EXPECT_EQ(b.size(), (m - 1) * n );
 
-    const float r1 = 4.25;
-    const float delta_r = (re - ri) / static_cast<float>(m);
-    const float sqDelta_r = delta_r * delta_r;
+    const double r1 = 4.25;
+    const double delta_r = (re - ri) / static_cast<double>(m);
+    const double sqDelta_r = delta_r * delta_r;
 
-    const float delta_t = 2.0f*pi / static_cast<float>(n);
-    const float sqDelta_t = delta_t*delta_t;
+    const double delta_t = 2.0f*pi / static_cast<double>(n);
+    const double sqDelta_t = delta_t*delta_t;
 
     // Termino independiente
-    const float coef = r1*r1*sqDelta_t - r1*delta_r*sqDelta_t;
-    const float b0 = -1500.f*coef;
+    const double coef = r1*r1*sqDelta_t - r1*delta_r*sqDelta_t;
+    const double b0 = -1500.f*coef;
     for(int i = 0; i < n; ++i)
     {
-        EXPECT_FLOAT_EQ(b(i),  b0);
+        EXPECT_DOUBLE_EQ(b(i),  b0);
     }
 
-    const float r3 = 4.75f;
-    const float bnm2 = -50.f*(r3*r3*sqDelta_t);
+    const double r3 = 4.75f;
+    const double bnm2 = -50.f*(r3*r3*sqDelta_t);
     for(int i = 0; i < n; ++i)
     {
-        EXPECT_FLOAT_EQ(b(n*(m - 2) + i),  bnm2);
+        EXPECT_DOUBLE_EQ(b(n*(m - 2) + i),  bnm2);
     }
 }
 
@@ -92,9 +92,9 @@ TEST(FindIsothermTest, FindIsothermGE)
     mn::OutputParams output;
     mn::FindIsotherm(0, input, output);
 
-    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381f);
-    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342f);
-    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532f);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(0), 1105.138173302108);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(6), 733.50351288056254);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(17), 382.51522248243566);
 }
 
 TEST(FindIsothermTest, FindIsothermLU)
@@ -116,7 +116,7 @@ TEST(FindIsothermTest, FindIsothermLU)
     mn::OutputParams output;
     mn::FindIsotherm(1, input, output);
 
-    EXPECT_FLOAT_EQ(output.soluciones[0](0), 1105.1381f);
-    EXPECT_FLOAT_EQ(output.soluciones[0](6), 733.50342f);
-    EXPECT_FLOAT_EQ(output.soluciones[0](17), 382.51532f);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(0), 1105.138173302108);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(6), 733.50351288056254);
+    EXPECT_DOUBLE_EQ(output.temps[0].inner(17), 382.51522248243566);
 }

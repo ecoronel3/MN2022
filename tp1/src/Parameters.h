@@ -3,28 +3,36 @@
 #include <vector>
 
 #include "VectorN.h"
+#include "FPType.h"
 
 namespace mn
 {
     struct Instance
     {
-        std::vector<float> internalTemps;
-        std::vector<float> externalTemps;
+        std::vector<FPType> internalTemps;
+        std::vector<FPType> externalTemps;
     };
 
     struct InputParams
     {
-        float ri{ 0.0f };
-        float re{ 0.0f };
+        FPType ri{ 0.0 };
+        FPType re{ 0.0 };
         int m{ 0 };
         int n{ 0 };
-        float iso{ 0 };
+        FPType iso{ 0.0 };
         int ninst{ 0 };
         std::vector<Instance> instances;
     };
 
+    struct OutputTemps 
+    {
+        std::vector<FPType> internal;
+        VectorN<FPType> inner;
+        std::vector<FPType> external;
+    };
+
     struct OutputParams
     {
-        std::vector<VectorNf> soluciones;
+        std::vector<OutputTemps> temps;
     };
 }

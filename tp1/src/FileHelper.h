@@ -47,7 +47,7 @@ namespace mn
             instance.internalTemps.reserve(params.n);
             for (int j = 0; j < params.n; ++j)
             {
-                float& temp = instance.internalTemps.emplace_back();
+                double& temp = instance.internalTemps.emplace_back();
                 values >> temp;
             }
 
@@ -55,7 +55,7 @@ namespace mn
             instance.externalTemps.reserve(params.n);
             for (int j = 0; j < params.n; ++j)
             {
-                float& temp = instance.externalTemps.emplace_back();
+                double& temp = instance.externalTemps.emplace_back();
                 values >> temp;
             }
         }
@@ -71,11 +71,21 @@ namespace mn
             return false;
         }
 
-        for(const auto& sol: params.soluciones)
+        for(const auto& temps: params.temps)
         {
-            for(int i = 0; i < sol.size(); ++i)
+            for(int i = 0; i < temps.internal.size(); ++i)
             {
-                file << sol(i) << '\n';
+                file << std::fixed << std::setprecision(6) << temps.internal[i] << '\n';
+            }
+
+            for(int i = 0; i < temps.inner.size(); ++i)
+            {
+                file << std::fixed << std::setprecision(6) << temps.inner(i) << '\n';
+            }
+
+            for(int i = 0; i < temps.external.size(); ++i)
+            {
+                file << std::fixed << std::setprecision(6) << temps.external[i] << '\n';
             }
         }
         file.close();
