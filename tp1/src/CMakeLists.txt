@@ -29,8 +29,17 @@ ADD_EXECUTABLE(tp1Test
   "tests/ForwardSubstitutionTest.cpp"
   "tests/LUFactorizationTest.cpp"
   "tests/FindIsothermTest.cpp"
+  "tests/AluTests.cpp"
   )
-  
+
+  # Test files
+set(TEST_FILES_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests/tests_alu)
+
+add_custom_command(TARGET tp1Test PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${TEST_FILES_SOURCE_DIR} $<TARGET_FILE_DIR:tp1Test>/tests_alu
+    DEPENDS ${MY_TARGET}
+    COMMENT "Copying test files output directory"
+)
 
 TARGET_INCLUDE_DIRECTORIES(tp1Test PUBLIC .)
 TARGET_LINK_LIBRARIES(tp1Test gtest_main)
