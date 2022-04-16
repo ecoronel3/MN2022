@@ -26,6 +26,8 @@ FindIsotherm.h
 FileHelper.h
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FileHelper.h
 
+/mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FPType.h
+
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FileHelper.h
 filesystem
 -
@@ -39,6 +41,8 @@ Parameters.h
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/Parameters.h
 
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FindIsotherm.h
+FPType.h
+/mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FPType.h
 BackwardSustitution.h
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/BackwardSustitution.h
 ForwardSubstitution.h
@@ -93,6 +97,8 @@ vector
 -
 VectorN.h
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/VectorN.h
+FPType.h
+/mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/FPType.h
 
 /mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/VectorN.h
 initializer_list

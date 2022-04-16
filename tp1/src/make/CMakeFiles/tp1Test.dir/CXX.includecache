@@ -14,7 +14,11 @@ MatrixN.h
 VectorN.h
 ../VectorN.h
 
+../FPType.h
+
 ../FindIsotherm.h
+FPType.h
+../FPType.h
 BackwardSustitution.h
 ../BackwardSustitution.h
 ForwardSubstitution.h
@@ -69,6 +73,8 @@ vector
 -
 VectorN.h
 ../VectorN.h
+FPType.h
+../FPType.h
 
 ../VectorN.h
 initializer_list

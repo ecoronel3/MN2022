@@ -194,19 +194,6 @@ BenchmarkEGvsLU/fast:
 .PHONY : BenchmarkEGvsLU/fast
 
 #=============================================================================
-# Target rules for targets named tp1NumericErrors
-
-# Build rule for target.
-tp1NumericErrors: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tp1NumericErrors
-.PHONY : tp1NumericErrors
-
-# fast build rule for target.
-tp1NumericErrors/fast:
-	$(MAKE) -f CMakeFiles/tp1NumericErrors.dir/build.make CMakeFiles/tp1NumericErrors.dir/build
-.PHONY : tp1NumericErrors/fast
-
-#=============================================================================
 # Target rules for targets named tp1
 
 # Build rule for target.
@@ -324,33 +311,6 @@ Main.s: Main.cpp.s
 Main.cpp.s:
 	$(MAKE) -f CMakeFiles/tp1.dir/build.make CMakeFiles/tp1.dir/Main.cpp.s
 .PHONY : Main.cpp.s
-
-MainNumericErrors.o: MainNumericErrors.cpp.o
-
-.PHONY : MainNumericErrors.o
-
-# target to build an object file
-MainNumericErrors.cpp.o:
-	$(MAKE) -f CMakeFiles/tp1NumericErrors.dir/build.make CMakeFiles/tp1NumericErrors.dir/MainNumericErrors.cpp.o
-.PHONY : MainNumericErrors.cpp.o
-
-MainNumericErrors.i: MainNumericErrors.cpp.i
-
-.PHONY : MainNumericErrors.i
-
-# target to preprocess a source file
-MainNumericErrors.cpp.i:
-	$(MAKE) -f CMakeFiles/tp1NumericErrors.dir/build.make CMakeFiles/tp1NumericErrors.dir/MainNumericErrors.cpp.i
-.PHONY : MainNumericErrors.cpp.i
-
-MainNumericErrors.s: MainNumericErrors.cpp.s
-
-.PHONY : MainNumericErrors.s
-
-# target to generate assembly for a file
-MainNumericErrors.cpp.s:
-	$(MAKE) -f CMakeFiles/tp1NumericErrors.dir/build.make CMakeFiles/tp1NumericErrors.dir/MainNumericErrors.cpp.s
-.PHONY : MainNumericErrors.cpp.s
 
 tests/BackwardSustitutionTest.o: tests/BackwardSustitutionTest.cpp.o
 
@@ -556,7 +516,6 @@ help:
 	@echo "... tp1Test"
 	@echo "... install/local"
 	@echo "... BenchmarkEGvsLU"
-	@echo "... tp1NumericErrors"
 	@echo "... tp1"
 	@echo "... gmock_main"
 	@echo "... gmock"
@@ -568,9 +527,6 @@ help:
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
-	@echo "... MainNumericErrors.o"
-	@echo "... MainNumericErrors.i"
-	@echo "... MainNumericErrors.s"
 	@echo "... tests/BackwardSustitutionTest.o"
 	@echo "... tests/BackwardSustitutionTest.i"
 	@echo "... tests/BackwardSustitutionTest.s"
