@@ -1,2 +1,2 @@
 # MN2022
-Repositorio de los trabajos practicos de Metodos Numericos 2022.1C
+Repositorio de los Trabajos Prácticos de Métodos Numéricos 2022.1C

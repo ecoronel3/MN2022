@@ -1,6 +1,6 @@
 
-## Codigo fuente
-El código fuente que implementa los métodos de Eliminación guassiana y de factorización LU puede encontrarse dentro de la carpeta tp1/src. Los tests unitarios están construidos utilizando la biblioteca GTest.
+## Código Fuente
+El código fuente que implementa los métodos de Eliminación Gaussiana y de Factorización LU puede encontrarse dentro de la carpeta tp1/src. Los tests unitarios están construidos utilizando la biblioteca GTest.
 
 ## Requisitos
 Es necesario contar con los siguientes programas instalados:
@@ -8,7 +8,7 @@ Es necesario contar con los siguientes programas instalados:
 * Algún C++ Compiler (con soporte para C++17 en adelante).
 
 ## Compilación
-Dentro de la carpeta src, se encuentra el archivo CMakeLists.txt. Se debe ejecutar los siguientes comandos:
+Dentro de la carpeta src, se encuentra el archivo CMakeLists.txt. Se deben ejecutar los siguientes comandos:
 * cmake CMakeLists.txt
 * cmake --build . --config Release 
 
@@ -39,4 +39,4 @@ $ tp1test
 ```
 
 ## Otros
-Hay otras carpetas como *exp* o *scripts* que contienen Jupyter Notebooks o scripts de Python que se utilizaron con propósitos de experiementación.
+Hay otras carpetas como *exp* o *scripts* que contienen Jupyter Notebooks o scripts de Python que se utilizaron con propósitos de experimentación.
