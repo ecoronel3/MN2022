@@ -30,8 +30,8 @@ def main(inputFilesDir, set, repeat = 50):
         outputFile.write(json.dumps(results, indent=4))
 
 if __name__ == '__main__':
-    main(inputFilesDir = '../exp/testEGvsLU/input2/', set=2)
+    # main(inputFilesDir = '../exp/testEGvsLU/input2/', set=2)
     main(inputFilesDir = '../exp/testEGvsLU/input3/', set=3)
-    main(inputFilesDir = '../exp/testEGvsLU/input4/', set=4)
-    main(inputFilesDir = '../exp/testEGvsLU/input5/', set=5)
+    # main(inputFilesDir = '../exp/testEGvsLU/input4/', set=4)
+    # main(inputFilesDir = '../exp/testEGvsLU/input5/', set=5)
 

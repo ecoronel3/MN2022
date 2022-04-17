@@ -122,13 +122,13 @@ namespace mn
     {
         auto A = BuildMatrix<FPType>(input.ri, input.re, input.m, input.n);
         output.temps.reserve(input.ninst);
+        auto [L, U] = LUFactorization(A);
+
         for (const Instance& inst: input.instances)
         {
             auto b = BuildVector<FPType>(input.ri, input.re, input.m, input.n, inst.internalTemps, inst.externalTemps);
 
-            auto x = VectorN<FPType>::zeros(b.size());
-            auto [L, U] = LUFactorization(A);
-            
+            auto x = VectorN<FPType>::zeros(b.size());            
             VectorN<FPType> y = ForwardSubstitution(L, b);
             BackwardSubstitution(U, y, x);
 
