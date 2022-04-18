@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/build/tp1Test[1]_tests.cmake")
+  include("/mnt/d/0-Facu/2022-1C-MetNum/tp1/MN2022/tp1/src/build/tp1Test[1]_tests.cmake")
+else()
+  add_test(tp1Test_NOT_BUILT tp1Test_NOT_BUILT)
+endif()
