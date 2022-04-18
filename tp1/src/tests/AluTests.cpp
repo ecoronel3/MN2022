@@ -8,6 +8,8 @@
 
 namespace
 {
+    constexpr FPType k_Epsilon = 0.000001;
+    
     std::vector<double> ReadExpectedFile(std::filesystem::path expectedFilename)
     {
         std::vector<double> res;
@@ -49,7 +51,6 @@ namespace
         }
         return res;
     }
-
 }
 
 TEST(AluTests, Test1)
@@ -60,13 +61,13 @@ TEST(AluTests, Test1)
 
     mn::OutputParams output;
 
-    mn::FindIsotherm(1, input, output);
+    mn::FindIsotherm(0, input, output);
     std::vector<double> results = Copy(output);
 
     EXPECT_EQ(expected.size(), results.size());
     for (int i = 0; i < expected.size(); ++i)
     {
-        EXPECT_DOUBLE_EQ(expected[i], results[i]);
+        EXPECT_NEAR(expected[i], results[i], k_Epsilon);
     }
 }
 
@@ -78,13 +79,13 @@ TEST(AluTests, Test2)
 
     mn::OutputParams output;
 
-    mn::FindIsotherm(1, input, output);
+    mn::FindIsotherm(0, input, output);
     std::vector<double> results = Copy(output);
 
     EXPECT_EQ(expected.size(), results.size());
     for (int i = 0; i < expected.size(); ++i)
     {
-        EXPECT_DOUBLE_EQ(expected[i], results[i]);
+        EXPECT_NEAR(expected[i], results[i], k_Epsilon);
     }
 }
 
@@ -96,13 +97,13 @@ TEST(AluTests, Test3)
 
     mn::OutputParams output;
 
-    mn::FindIsotherm(1, input, output);
+    mn::FindIsotherm(0, input, output);
     std::vector<double> results = Copy(output);
 
     EXPECT_EQ(expected.size(), results.size());
     for (int i = 0; i < expected.size(); ++i)
     {
-        EXPECT_DOUBLE_EQ(expected[i], results[i]);
+        EXPECT_NEAR(expected[i], results[i], k_Epsilon);
     }
 }
 
@@ -114,12 +115,12 @@ TEST(AluTests, Test4)
 
     mn::OutputParams output;
 
-    mn::FindIsotherm(1, input, output);
+    mn::FindIsotherm(0, input, output);
     std::vector<double> results = Copy(output);
 
     EXPECT_EQ(expected.size(), results.size());
     for (int i = 0; i < expected.size(); ++i)
     {
-        EXPECT_DOUBLE_EQ(expected[i], results[i]);
+        EXPECT_NEAR(expected[i], results[i], k_Epsilon);
     }
 }
