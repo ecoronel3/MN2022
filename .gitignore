@@ -36,3 +36,5 @@
 build/*
 tp1/build/*
 tp1/.vscode/*
+tp2/build/*
+tp2/.vscode/*
