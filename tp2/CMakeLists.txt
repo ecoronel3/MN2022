@@ -10,8 +10,8 @@ include(FetchContent)
 ## GoogleTest
 FetchContent_Declare(
     googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG        release-1.11.0
+    GIT_REPOSITORY  https://github.com/google/googletest.git
+    GIT_TAG         release-1.11.0
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -19,8 +19,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 ## Eigen
 FetchContent_Declare(
     eigen
-    GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-    GIT_TAG 3.4.0
+    GIT_REPOSITORY  https://gitlab.com/libeigen/eigen.git
+    GIT_TAG         3.4.0
 )
 
 enable_testing()
@@ -35,6 +35,8 @@ include_directories(EIGEN3_INCLUDE_DIR)
 ## OCR Library
 add_library(libocr STATIC 
     "libocr/PCA.cpp"
+    "libocr/powerIteration.cpp"
+    "libocr/randVector.cpp"
     )
 
 target_include_directories(libocr PRIVATE ${EIGEN3_INCLUDE_DIR})
@@ -43,6 +45,7 @@ target_link_libraries(libocr eigen_blas_static)
 ## Test OCR library
 add_executable(tp2Test 
   "tests/PCATests.cpp"
+  "tests/powerIterationTests.cpp"
   )
 
 target_include_directories(tp2Test PUBLIC .)
