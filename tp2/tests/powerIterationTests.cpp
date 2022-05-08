@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
 #include <Eigen/Dense>
-#include "libocr/powerIteration.h"
-#include "libocr/randVector.h"
+#include "mn/powerIteration.h"
+#include "mn/randVector.h"
 
 namespace 
 {

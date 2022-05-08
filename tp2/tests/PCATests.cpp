@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <Eigen/Dense>
-#include "libocr/PCA.h"
+#include "mn/PCA.h"
 
 TEST(PCATests, SquareMatrix)
 {

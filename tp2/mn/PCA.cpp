@@ -5,7 +5,6 @@
 #include "powerIteration.h"
 #include "randVector.h"
 
-
 namespace mn
 {
     void PCA::fit(const Eigen::MatrixXd& data)

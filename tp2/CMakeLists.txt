@@ -33,25 +33,27 @@ set(EIGEN3_INCLUDE_DIR ${eigen_SOURCE_DIR})
 include_directories(EIGEN3_INCLUDE_DIR)
 
 ## OCR Library
-add_library(libocr STATIC 
-    "libocr/PCA.cpp"
-    "libocr/powerIteration.cpp"
-    "libocr/randVector.cpp"
-    )
 
-target_include_directories(libocr PRIVATE ${EIGEN3_INCLUDE_DIR})
-target_link_libraries(libocr eigen_blas_static)
+set(LIBMN_SOURCES 
+    "mn/PCA.cpp"
+    "mn/powerIteration.cpp"
+    "mn/kNNClassifier.cpp"
+    "mn/randVector.cpp"
+)
+add_library(libmn STATIC ${LIBMN_SOURCES})
+target_include_directories(libmn PRIVATE ${EIGEN3_INCLUDE_DIR})
+target_link_libraries(libmn eigen_blas_static)
 
 ## Test OCR library
-add_executable(tp2Test 
-  "tests/PCATests.cpp"
-  "tests/powerIterationTests.cpp"
-  )
-
+set(TP2TEST_SOURCES
+    "tests/PCATests.cpp"
+    "tests/powerIterationTests.cpp"
+    "tests/kNNClassifierTests.cpp"
+)
+add_executable(tp2Test ${TP2TEST_SOURCES})
 target_include_directories(tp2Test PUBLIC .)
-
 target_include_directories(tp2Test PRIVATE ${EIGEN3_INCLUDE_DIR})
-target_link_libraries(tp2Test gtest_main libocr)
+target_link_libraries(tp2Test gtest_main libmn)
 
 include(GoogleTest)
 gtest_discover_tests(tp2Test)
