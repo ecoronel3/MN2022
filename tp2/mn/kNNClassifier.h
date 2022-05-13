@@ -2,6 +2,7 @@
 #include <cstdint>
 
 #include <Eigen/Dense>
+#include <queues>
 
 namespace mn
 {
@@ -15,10 +16,12 @@ namespace mn
             }
 
             void fit(const Eigen::MatrixXd& X, const Eigen::VectorXd& y);
-            uint16_t predict(const Eigen::VectorXd& x);
+            VectorXd predict(const Eigen::VectorXd& x);
 
         private:
             uint16_t m_KNeighbors;
+            Eigen::MatrixXd m_X;
+            Eigen::VectorXd m_y;
     };
 
 }
