@@ -1,4 +1,4 @@
-# Reconocimiento de dígitos
+# Reconocimiento de Dígitos
 
 
 ##
