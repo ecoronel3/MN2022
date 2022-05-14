@@ -8,7 +8,7 @@ namespace mn
     class PCA
     {
         public:
-            PCA(uint16_t components, uint16_t iteratedPower)
+            PCA(std::uint16_t components, std::uint16_t iteratedPower)
                 : m_NComponents(components)
                 , m_IteratedPower(iteratedPower)
                 , m_EigenValues(m_NComponents)

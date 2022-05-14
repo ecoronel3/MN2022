@@ -1,4 +1,6 @@
 #include "kNNClassifier.h"
+#include <queue>
+#include <map>
 
 namespace mn
 {
@@ -13,38 +15,40 @@ namespace mn
         Eigen::VectorXd yPredicted(X.rows());
         for (int i = 0; i < X.rows(); i++)
         {   
-            priority_queue<pair<double, int>> distances;
+            std::priority_queue<std::pair<double, int>> distances;
             for (int j = 0; j < m_X.rows(); j++)
             {
-                distance = (X.row(i) - m_X.row(j)).norm();
+                auto distance = (X.row(i) - m_X.row(j)).norm();
                 if (distances.size() < m_KNeighbors)
                 {
-                    distances.push(make_pair(distance, j));
+                    distances.push(std::make_pair(distance, j));
                 }
                 else if (distances.top().first > distance)
                 {
                     distances.pop();    
-                    distances.push(make_pair(distance, j));     // replace the greatest distance with the new distance
+                    distances.push(std::make_pair(distance, j));     // replace the greatest distance with the new distance
                 }
             }
-            map<uint16_t, tuple<int, double>> neighbor_classes;
+            std::map<std::uint16_t, std::pair<int, double>> neighbor_classes;
             uint16_t classification = m_y(distances.top().second);
             int count = 1;
 
             while (!distances.empty())
             {   
-                neighbor = distances.pop();
-                neighbor_class = m_y(neighbor.second);
-                old_value = neighbor_classes[neighbor_class];
-                neighbor_classes[neighbor_class] = make_pair(old_value.first + 1, old_value.second + neighbor.first);
+                auto neighbor = distances.top();
+                distances.pop();
+                auto neighbor_class = m_y(neighbor.second);
+                auto old_value = neighbor_classes[neighbor_class];
+                neighbor_classes[neighbor_class] = std::make_pair(old_value.first + 1, old_value.second + neighbor.first);
 
                 if(classification == neighbor_class)
                 {
                     count++;
-                } else if (old_value + 1 > count)
+                } 
+                else if (old_value.first + 1 > count)
                 {
                     classification = neighbor_class;
-                    count = old_value + 1;
+                    count = old_value.first + 1;
                 }
             }
             yPredicted(i) = classification;

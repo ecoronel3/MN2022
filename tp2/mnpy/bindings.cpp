@@ -2,10 +2,10 @@
 #include <pybind11/eigen.h>
 
 #include "mn/powerIteration.h"
+#include "mn/PCA.h"
+#include "mn/kNNClassifier.h"
 
-int add(int i, int j) {
-    return i + j;
-}
+namespace py = pybind11;
 
 double powerIteration(Eigen::Ref<const Eigen::MatrixXd> B, Eigen::Ref<const Eigen::VectorXd> x0, const uint16_t niter, const double epsilon)
 {   
@@ -14,9 +14,16 @@ double powerIteration(Eigen::Ref<const Eigen::MatrixXd> B, Eigen::Ref<const Eige
 
 PYBIND11_MODULE(mnpy, m) 
 {
-    m.doc() = "pybind11 example plugin"; // optional module docstring
-
-    m.def("add", &add, "A function that adds two numbers");
-
     m.def("powerIteration", &powerIteration, "The Power Method");
+
+    py::class_<mn::PCA>(m, "PCA")
+        .def(py::init<std::uint16_t, std::uint16_t>())
+        .def("fit", &mn::PCA::fit)
+        .def("getEigenValues", &mn::PCA::getEigenValues)
+        .def("getEigenVectors", &mn::PCA::getEigenVectors);
+
+    py::class_<mn::kNNClassifier>(m, "kNNClassifier")
+        .def(py::init<std::uint16_t>())
+        .def("fit", &mn::kNNClassifier::fit)
+        .def("predict", &mn::kNNClassifier::predict);
 }
