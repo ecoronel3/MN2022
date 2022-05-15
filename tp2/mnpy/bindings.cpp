@@ -19,8 +19,9 @@ PYBIND11_MODULE(mnpy, m)
     py::class_<mn::PCA>(m, "PCA")
         .def(py::init<std::uint16_t, std::uint16_t>())
         .def("fit", &mn::PCA::fit)
+        .def("transform", &mn::PCA::transform)
         .def("getEigenValues", &mn::PCA::getEigenValues)
-        .def("getEigenVectors", &mn::PCA::getEigenVectors);
+        .def("getComponents", &mn::PCA::getComponents);
 
     py::class_<mn::kNNClassifier>(m, "kNNClassifier")
         .def(py::init<std::uint16_t>())

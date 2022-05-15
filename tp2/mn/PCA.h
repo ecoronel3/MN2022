@@ -12,26 +12,25 @@ namespace mn
                 : m_NComponents(components)
                 , m_IteratedPower(iteratedPower)
                 , m_EigenValues(m_NComponents)
-                , m_EigenVectors(m_NComponents, m_NComponents)
+                , m_Components(m_NComponents, m_NComponents)
             {
 
             }
 
             void fit(const Eigen::MatrixXd& x);
+            Eigen::MatrixXd transform(const Eigen::MatrixXd& X);
 
             const Eigen::VectorXd& getEigenValues() const { return m_EigenValues; }
-            const Eigen::MatrixXd& getEigenVectors() const { return m_EigenVectors; }
+            const Eigen::MatrixXd& getComponents() const { return m_Components; }
             
-        protected:
-            Eigen::MatrixXd getCovarianceMatrix(const Eigen::VectorXd& mu, const Eigen::MatrixXd& x);
-            void deflate(Eigen::MatrixXd& B, const Eigen::VectorXd& eigenVector, const double eigenValue);
-
         private:
+            Eigen::MatrixXd getCovarianceMatrix(const Eigen::VectorXd& mu, const Eigen::MatrixXd& x);
+
             uint16_t m_NComponents{0};
             uint16_t m_IteratedPower{0};
             double m_Tolerance{0.0};
             Eigen::VectorXd m_EigenValues;
-            Eigen::MatrixXd m_EigenVectors;
+            Eigen::MatrixXd m_Components;
     };
 
 }

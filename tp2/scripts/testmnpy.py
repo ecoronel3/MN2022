@@ -9,10 +9,24 @@ x0 = np.array([1, 1, 1])
 eigenvalue = mn.powerIteration(B, x0, 120, 0.0001)
 print(eigenvalue)
 
-data = np.array([ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 1.0, 1.0]])
-pca = mn.PCA(3, 64)
-pca.fit(data)
-print(pca.getEigenVectors())
+training_dataset = np.array([ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 1.0, 1.0]])
+targets_dataset = np.array([0, 1, 0, 4 ])
 
-knn = mn.kNNClassifier(3)
+pca = mn.PCA(3, 64)
+pca.fit(training_dataset)
+knn = mn.kNNClassifier(1)
+knn.fit(pca.transform(training_dataset), targets_dataset)
+
+data = np.array([ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])
+y = knn.predict(pca.transform(data))
+print(y)
+## y = [0, 1]
+
+
+## print(pca.getEigenVectors())
+
+
 # knn.fit()
+
+
+
