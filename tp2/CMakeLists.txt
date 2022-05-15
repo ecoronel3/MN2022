@@ -1,5 +1,16 @@
 cmake_policy(SET CMP0048 NEW)
 
+
+# if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+#     set(CMAKE_INSTALL_PREFIX
+#         ${CMAKE_CURRENT_SOURCE_DIR} CACHE PATH "install prefix" FORCE
+#     )
+# endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+
+set(CMAKE_INSTALL_PREFIX
+    ${CMAKE_CURRENT_SOURCE_DIR}/install CACHE PATH "install prefix" FORCE
+)
+
 project(tp2 VERSION 1.0.0)
 cmake_minimum_required(VERSION 3.11)
 
@@ -75,6 +86,9 @@ pybind11_strip(mnpy)
 
 set_target_properties(mnpy PROPERTIES CXX_VISIBILITY_PRESET "hidden"
                                          CUDA_VISIBILITY_PRESET "hidden")
+
+# set(MNPY_INSTALL_PATH ${CMAKE_INSTALL_PREFIX}/scripts)
+install(TARGETS mnpy LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} )
 
 # pybind11_add_module(mnpy ${MNPY_SOURCES})
 

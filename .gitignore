@@ -38,3 +38,5 @@ tp1/build/*
 tp1/.vscode/*
 tp2/build/*
 tp2/.vscode/*
+tp2/scripts/__pycache__/*
+

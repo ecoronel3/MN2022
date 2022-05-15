@@ -1,5 +1,5 @@
 import sys
-sys.path.append('build\Debug')
+sys.path.append('install\lib')
 
 import mnpy as mn
 import numpy as np

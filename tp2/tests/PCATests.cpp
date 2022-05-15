@@ -10,8 +10,8 @@ TEST(PCATests, FitSquareMatrix)
     Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
     pca.fit(data);
     EXPECT_EQ(pca.getEigenValues().size(), 3);
-    EXPECT_EQ(pca.getEigenVectors().cols(), 3);
-    EXPECT_EQ(pca.getEigenVectors().rows(), 3);
+    EXPECT_EQ(pca.getComponents().cols(), 3);
+    EXPECT_EQ(pca.getComponents().rows(), 3);
 
 }
 
@@ -23,8 +23,8 @@ TEST(PCATests, FitNonSquareMatrix)
     pca.fit(data);
 
     EXPECT_EQ(pca.getEigenValues().size(), 3);    
-    EXPECT_EQ(pca.getEigenVectors().rows(), 3);
-    EXPECT_EQ(pca.getEigenVectors().cols(), 3);
+    EXPECT_EQ(pca.getComponents().rows(), 3);
+    EXPECT_EQ(pca.getComponents().cols(), 3);
 }
 
 TEST(PCATests, FitNonSquareMatrix4)
@@ -44,8 +44,8 @@ TEST(PCATests, FitNonSquareMatrix4)
     pca.fit(data);
 
     EXPECT_EQ(pca.getEigenValues().size(), 5);
-    EXPECT_EQ(pca.getEigenVectors().rows(), 5);
-    EXPECT_EQ(pca.getEigenVectors().cols(), 16);
+    EXPECT_EQ(pca.getComponents().rows(), 5);
+    EXPECT_EQ(pca.getComponents().cols(), 16);
 }
 
 
