@@ -16,12 +16,15 @@ PYBIND11_MODULE(mnpy, m)
 {
     m.def("powerIteration", &powerIteration, "The Power Method");
 
-    py::class_<mn::PCA>(m, "PCA")
+    py::class_<mn::PCA>(m, "PCA", py::dynamic_attr())
+        .def(py::init())
         .def(py::init<std::uint16_t, std::uint16_t>())
         .def("fit", &mn::PCA::fit)
         .def("transform", &mn::PCA::transform)
         .def("getEigenValues", &mn::PCA::getEigenValues)
-        .def("getComponents", &mn::PCA::getComponents);
+        .def("getComponents", &mn::PCA::getComponents)
+        .def_readwrite("n_components", &mn::PCA::nComponents)
+        .def_readwrite("iterated_power", &mn::PCA::iteratedPower);
 
     py::class_<mn::kNNClassifier>(m, "kNNClassifier")
         .def(py::init<std::uint16_t>())

@@ -39,4 +39,4 @@ tp1/.vscode/*
 tp2/build/*
 tp2/.vscode/*
 tp2/scripts/__pycache__/*
-
+tp2/install/*

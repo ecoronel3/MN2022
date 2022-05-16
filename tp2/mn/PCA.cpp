@@ -23,11 +23,11 @@ namespace mn
         Eigen::MatrixXd Mx = getCovarianceMatrix(mu, data);
 
         ////// power method ///////
-        m_Components.resize(m_NComponents, mFeatures);
-        for(std::uint16_t i = 0; i < m_NComponents; ++i)
+        m_Components.resize(nComponents, mFeatures);
+        for(std::uint16_t i = 0; i < nComponents; ++i)
         {
             Eigen::VectorXd vi = randVectorXd(mFeatures, 0.1, 1.0);
-            const auto [eigenValue, eigenVector] = powerIteration(Mx, vi, m_IteratedPower);
+            const auto [eigenValue, eigenVector] = powerIteration(Mx, vi, iteratedPower);
             // deflate
             Mx = Mx - eigenValue*eigenVector*eigenVector.transpose();
             
