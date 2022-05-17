@@ -1,5 +1,5 @@
-    import sys
-    sys.path.append('install\lib')
+import sys
+sys.path.append('install\lib')
 
 import mnpy as mn
 import numpy as np

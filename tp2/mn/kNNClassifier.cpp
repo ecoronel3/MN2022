@@ -13,6 +13,11 @@ namespace mn
          
     }
 
+    float kNNClassifier::score(const Eigen::MatrixXd& X, const Eigen::VectorXd& y)
+    {
+        return 0.0f;
+    }
+
     std::vector<uint16_t> kNNClassifier::predict(const Eigen::MatrixXd& X)
     {
         std::vector<uint16_t> yPredicted(X.rows(), -1);
@@ -22,7 +27,7 @@ namespace mn
             for (int j = 0; j < m_X.rows(); j++)
             {
                 auto distance = (X.row(i) - m_X.row(j)).norm();
-                if (distances.size() < m_KNeighbors)
+                if (distances.size() < kNeighbors)
                 {
                     distances.push(std::make_pair(distance, j));
                 }
