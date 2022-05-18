@@ -15,8 +15,10 @@ namespace mn
 
             }
 
-            void fit(const Eigen::MatrixXd& X, const std::vector<uint16_t>& y);
-            std::vector<uint16_t> predict(const Eigen::MatrixXd& X);
+            // void fit(const Eigen::MatrixXd& X, const std::vector<uint16_t>& y);
+            void fit(const Eigen::MatrixXd& X, const Eigen::VectorXi& y);
+
+            Eigen::VectorXi predict(const Eigen::MatrixXd& X);
 
             float score(const Eigen::MatrixXd& X, const Eigen::VectorXd& y);
 
@@ -24,7 +26,8 @@ namespace mn
 
         private:            
             Eigen::MatrixXd m_X;
-            std::vector<uint16_t> m_y;
+            // std::vector<uint16_t> m_y;
+            Eigen::VectorXi m_y;
     };
 
 }

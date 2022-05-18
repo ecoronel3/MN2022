@@ -68,7 +68,6 @@ TEST(PCATests, Transform)
 
     Eigen::MatrixXd Y = pca.transform(X);
 
-    EXPECT_EQ(Y.rows(), 5);
-    EXPECT_EQ(Y.cols(), 16);
-
+    EXPECT_EQ(Y.rows(), 1);
+    EXPECT_EQ(Y.cols(), 5);
 }

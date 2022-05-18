@@ -4,13 +4,10 @@
 
 namespace mn
 {
-    void kNNClassifier::fit(const Eigen::MatrixXd& X, const std::vector<uint16_t>& y)
+    void kNNClassifier::fit(const Eigen::MatrixXd& X, const Eigen::VectorXi& y)
     {
          m_X = X;
-         m_y = y;
-         int n = y.size();
-         int max = -1;
-         
+         m_y = y;        
     }
 
     float kNNClassifier::score(const Eigen::MatrixXd& X, const Eigen::VectorXd& y)
@@ -18,9 +15,9 @@ namespace mn
         return 0.0f;
     }
 
-    std::vector<uint16_t> kNNClassifier::predict(const Eigen::MatrixXd& X)
+    Eigen::VectorXi kNNClassifier::predict(const Eigen::MatrixXd& X)
     {
-        std::vector<uint16_t> yPredicted(X.rows(), -1);
+        Eigen::VectorXi yPredicted = Eigen::VectorXi::Ones(X.rows());
         for (int i = 0; i < X.rows(); i++)
         {   
             std::priority_queue<std::pair<double, int>> distances;
@@ -37,8 +34,8 @@ namespace mn
                     distances.push(std::make_pair(distance, j));     // replace the greatest distance with the new distance
                 }
             }
-            std::map<std::uint16_t, std::pair<int, double>> neighbor_classes; //par cantidad, distancia total
-            uint16_t classification = -1;
+            std::map<int, std::pair<int, double>> neighbor_classes; //par cantidad, distancia total
+            int classification = -1;
             int count = 0;
 
             while (!distances.empty())
@@ -60,7 +57,7 @@ namespace mn
                     count = old_value.first + 1;
                 }
             }
-            yPredicted[i] = classification;
+            yPredicted(i) = classification;
         }
         return yPredicted;
     }

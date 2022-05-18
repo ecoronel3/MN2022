@@ -8,9 +8,10 @@ TEST(kNNClassifier, k1)
     mn::kNNClassifier knn{1};
 
     Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
-    std::vector<uint16_t> labels{0, 1, 2};
+    Eigen::VectorXi labels{3};
+    labels << 0, 1, 2;
     knn.fit(data, labels);
-    std::vector<uint16_t> classification = knn.predict(data);
+    auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 3);
     for(int i = 0; i < 3; i++)
     {
@@ -23,9 +24,10 @@ TEST(kNNClassifier, kn)
     mn::kNNClassifier knn{3};
 
     Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
-    std::vector<uint16_t> labels{0, 1, 1};
+    Eigen::VectorXi labels{3};
+    labels << 0, 1, 1;
     knn.fit(data, labels);
-    std::vector<uint16_t> classification = knn.predict(data);
+    auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 3);
     for(int i = 0; i < 3; i++)
     {
@@ -38,10 +40,11 @@ TEST(kNNClassifier, kn2)
     mn::kNNClassifier knn{2};
 
     Eigen::MatrixXd trainData{{1.0, 0.0, 0.0}, {2.0, 0.0, 0.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
-    std::vector<uint16_t> labels{0,0,1,1};
+    Eigen::VectorXi labels{4};
+    labels << 0 , 0 , 1 , 1;
     Eigen::MatrixXd data{{1.5, 0.0, 0.0}, {0.0, 0.0, 2.5}};
     knn.fit(trainData, labels);
-    std::vector<uint16_t> classification = knn.predict(data);
+    auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 2);
     EXPECT_EQ(classification[0], 0);
     EXPECT_EQ(classification[1], 1);
@@ -53,10 +56,11 @@ TEST(kNNClassifier, kn3)
     mn::kNNClassifier knn{3};
 
     Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
-    std::vector<uint16_t> labels{0,0,1,1};
+    Eigen::VectorXi labels{4};
+    labels << 0,0,1,1;
     Eigen::MatrixXd data{{0.0, 0.0, -2.5}, {0.0, 0.0, 2.5}};
     knn.fit(trainData, labels);
-    std::vector<uint16_t> classification = knn.predict(data);
+    auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 2);
     EXPECT_EQ(classification[0], 0);
     EXPECT_EQ(classification[1], 1);
@@ -68,10 +72,11 @@ TEST(kNNClassifier, knEmpate)
     mn::kNNClassifier knn{4};
 
     Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
-    std::vector<uint16_t> labels{0,0,1,1};
+    Eigen::VectorXi labels{4};
+    labels << 0,0,1,1;
     Eigen::MatrixXd data{{0.0, 0.0, -2.5}, {0.0, 0.0, 2.5}};
     knn.fit(trainData, labels);
-    std::vector<uint16_t> classification = knn.predict(data);
+    auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 2);
     EXPECT_EQ(classification[0], 0);
     EXPECT_EQ(classification[1], 1);
