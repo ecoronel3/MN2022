@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <map>
 
 #include <Eigen/Dense>
 
@@ -18,7 +19,12 @@ namespace mn
 
             }
 
-            void fit(const Eigen::MatrixXd& x);
+            PCA& fit(const Eigen::MatrixXd& X);
+            PCA& fit(const Eigen::MatrixXd& X, const Eigen::VectorXi& y)
+            {
+                return fit(X);
+            }
+
             Eigen::MatrixXd transform(const Eigen::MatrixXd& X);
 
             const Eigen::VectorXd& getEigenValues() const { return m_EigenValues; }

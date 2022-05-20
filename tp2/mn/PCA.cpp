@@ -7,7 +7,7 @@
 
 namespace mn
 {
-    void PCA::fit(const Eigen::MatrixXd& data)
+    PCA& PCA::fit(const Eigen::MatrixXd& data)
     {
         const std::uint64_t mFeatures = data.cols();
         const std::uint64_t nSamples = data.rows();
@@ -34,6 +34,7 @@ namespace mn
             m_EigenValues[i] = eigenValue;
             m_Components.row(i) = eigenVector;
         }
+        return *this;
     }
 
     /// X is an array-like of shape (n_samples, n_features)

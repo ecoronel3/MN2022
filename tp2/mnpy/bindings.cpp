@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/eigen.h>
+#include <pybind11/stl.h>
 
 #include "mn/powerIteration.h"
 #include "mn/PCA.h"
@@ -20,7 +21,8 @@ PYBIND11_MODULE(mnpy, m)
         .def(py::init())
         .def(py::init<std::uint16_t, std::uint16_t>())
         .def(py::init<mn::PCA const &>())
-        .def("fit", &mn::PCA::fit)
+        .def("fit", py::overload_cast<const Eigen::MatrixXd&>(&mn::PCA::fit))
+        .def("fit", py::overload_cast<const Eigen::MatrixXd&, const Eigen::VectorXi&>(&mn::PCA::fit))
         .def("transform", &mn::PCA::transform)
         .def("getEigenValues", &mn::PCA::getEigenValues)
         .def("getComponents", &mn::PCA::getComponents)

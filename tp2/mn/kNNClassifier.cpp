@@ -4,15 +4,25 @@
 
 namespace mn
 {
-    void kNNClassifier::fit(const Eigen::MatrixXd& X, const Eigen::VectorXi& y)
+    kNNClassifier& kNNClassifier::fit(const Eigen::MatrixXd& X, const Eigen::VectorXi& y)
     {
          m_X = X;
-         m_y = y;        
+         m_y = y;
+         return *this;
     }
 
-    float kNNClassifier::score(const Eigen::MatrixXd& X, const Eigen::VectorXd& y)
+    float kNNClassifier::score(const Eigen::MatrixXd& X, const Eigen::VectorXi& y)
     {
-        return 0.0f;
+        const auto y_predicted = predict(X);
+        const auto n = y.size();
+        const auto result = y_predicted - y;
+        float sum{0.0f};
+        for(auto i = 0; i < n; ++i)
+        {
+            sum += result(i) == 0 ? 1 : 0;
+        }
+
+        return sum / static_cast<float>(n);
     }
 
     Eigen::VectorXi kNNClassifier::predict(const Eigen::MatrixXd& X)
