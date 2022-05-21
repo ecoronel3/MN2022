@@ -8,14 +8,9 @@
 
 namespace py = pybind11;
 
-double powerIteration(Eigen::Ref<const Eigen::MatrixXd> B, Eigen::Ref<const Eigen::VectorXd> x0, const uint16_t niter, const double epsilon)
-{   
-    return mn::powerIteration(B, x0, niter, epsilon).first;
-}
-
 PYBIND11_MODULE(mnpy, m) 
 {
-    m.def("powerIteration", &powerIteration, "The Power Method");
+    m.def("powerIteration", &mn::powerIteration, "The Power Method");
 
     py::class_<mn::PCA>(m, "PCA", py::dynamic_attr())
         .def(py::init())

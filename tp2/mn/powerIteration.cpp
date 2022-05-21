@@ -1,18 +1,26 @@
 #include "powerIteration.h"
+#include <iostream>
 
 namespace mn
 {
-    std::pair<double, Eigen::VectorXd> powerIteration(const Eigen::MatrixXd& B, const Eigen::VectorXd& x0, const uint16_t niter, const double epsilon)
+    std::tuple<double, Eigen::VectorXd, uint16_t> powerIteration(const Eigen::MatrixXd& A, const Eigen::VectorXd& x0, const uint16_t niter, const double tol)
     {
-        Eigen::VectorXd v{x0};
-        for (uint16_t i = 0; i < niter; ++i)
+        Eigen::VectorXd x{x0};
+        for (uint16_t k = 0; k < niter; ++k)
         {
-            Eigen::VectorXd Bv = B * v;
-            const double norm = Bv.norm();
-            v = Bv * (1.0 / norm);
+            Eigen::VectorXd y = A * x;
+            const auto y_normalized = y.normalized();
+            const double err = (x - y_normalized).norm();
+
+            x = y_normalized;
+
+            if (err < tol)
+            {
+                const double xtAx = x.transpose() * A * x;
+                return {xtAx, x, k};
+            }
         }
-        const double vtBv = v.transpose() * B * v;
-        const double vtv = v.transpose() * v;
-        return {vtBv / vtv, v};
-    }
+        const double xtAx = x.transpose() * A * x;
+        return {xtAx, x, niter};
+    }   
 }
