@@ -14,7 +14,7 @@ targets_dataset = np.array([0, 1, 0, 4 ])
 
 pca = mn.PCA(3, 64)
 pca.fit(training_dataset)
-knn = mn.kNNClassifier(1)
+knn = mn.kNNClassifier(1, mn.KNNWeights.Uniform)
 knn.fit(pca.transform(training_dataset), targets_dataset)
 
 data = np.array([ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])

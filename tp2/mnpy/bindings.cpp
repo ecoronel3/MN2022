@@ -25,11 +25,17 @@ PYBIND11_MODULE(mnpy, m)
         .def_readwrite("iterated_power", &mn::PCA::iteratedPower)
         .def_readwrite("tolerance_error", &mn::PCA::toleranceError);
 
-    py::class_<mn::kNNClassifier>(m, "kNNClassifier", py::dynamic_attr())
-        .def(py::init())
-        .def(py::init<std::uint16_t>())
+    py::class_<mn::kNNClassifier> knn(m, "kNNClassifier", py::dynamic_attr());
+    knn.def(py::init())
+        .def(py::init<std::uint16_t, mn::KNNWeights>())
         .def("fit", &mn::kNNClassifier::fit)
         .def("predict", &mn::kNNClassifier::predict)
         .def("score", &mn::kNNClassifier::score)
         .def_readwrite("k_neighbors", &mn::kNNClassifier::kNeighbors);
+
+    py::enum_<mn::KNNWeights>(m, "KNNWeights")
+        .value("Uniform", mn::KNNWeights::Uniform)
+        .value("Distance", mn::KNNWeights::Distance)
+        .value("Custom", mn::KNNWeights::Custom)
+        .export_values();
 }
