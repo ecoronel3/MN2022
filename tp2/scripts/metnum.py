@@ -13,6 +13,9 @@ class GridSearchCV:
 
     def fit(self, X, y):
         self.results = []
+        self.best_params = {
+            'score': 0
+        }
 
         for k, (train, test) in enumerate(self.cv.split(X, y)):
             for n_component in self.n_components:
@@ -37,6 +40,8 @@ class GridSearchCV:
                         X_test = pca.transform(X[test])
                         y_test = y[test]
                         result['score'] =  knn.score(X_test, y_test)
+                        if self.best_params['score'] < result['score']:
+                            self.best_params = result
 
                         self.results.append(result)
 
