@@ -39,7 +39,7 @@ class GridSearchCV:
                             pca.fit(X_train, y_train)
                             X_traing_transformed = pca.transform(X[train])
 
-                            knn = mn.kNNClassifier(k_neighbor)
+                            knn = mn.kNNClassifier(k_neighbor, mn.KNNWeights.Uniform)
                             knn.fit(X_traing_transformed, y_train)
                             X_test = pca.transform(X[test])
                             y_test = y[test]
