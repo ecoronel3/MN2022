@@ -59,6 +59,7 @@ set(LIBMN_SOURCES
     "mn/randVector.cpp"
 )
 add_library(libmn STATIC ${LIBMN_SOURCES})
+set_target_properties(libmn PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(libmn PRIVATE ${EIGEN3_INCLUDE_DIR})
 target_link_libraries(libmn eigen_blas_static)
 

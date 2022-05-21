@@ -32,6 +32,7 @@ namespace mn
             
             uint16_t nComponents{8};
             uint16_t iteratedPower{32};
+            double toleranceError = std::numeric_limits<double>::epsilon();
 
         private:
             Eigen::MatrixXd getCovarianceMatrix(const Eigen::VectorXd& mu, const Eigen::MatrixXd& x);

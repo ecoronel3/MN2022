@@ -22,7 +22,8 @@ PYBIND11_MODULE(mnpy, m)
         .def("getEigenValues", &mn::PCA::getEigenValues)
         .def("getComponents", &mn::PCA::getComponents)
         .def_readwrite("n_components", &mn::PCA::nComponents)
-        .def_readwrite("iterated_power", &mn::PCA::iteratedPower);
+        .def_readwrite("iterated_power", &mn::PCA::iteratedPower)
+        .def_readwrite("tolerance_error", &mn::PCA::toleranceError);
 
     py::class_<mn::kNNClassifier>(m, "kNNClassifier", py::dynamic_attr())
         .def(py::init())

@@ -27,7 +27,7 @@ namespace mn
         for(std::uint16_t i = 0; i < nComponents; ++i)
         {
             Eigen::VectorXd vi = randVectorXd(mFeatures, 0.1, 1.0);
-            const auto [eigenValue, eigenVector, iter] = powerIteration(Mx, vi, iteratedPower);
+            const auto [eigenValue, eigenVector, iter] = powerIteration(Mx, vi, iteratedPower, toleranceError);
             // deflate
             Mx = Mx - eigenValue*eigenVector*eigenVector.transpose();
             
