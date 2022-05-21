@@ -6,6 +6,5 @@
 
 namespace mn
 {
-    std::pair<double, Eigen::VectorXd> powerIteration(const Eigen::MatrixXd& B, const Eigen::VectorXd& x0, uint16_t niter, double epsilon = std::numeric_limits<double>::epsilon());
-
+    std::tuple<double, Eigen::VectorXd, uint16_t> powerIteration(const Eigen::MatrixXd& B, const Eigen::VectorXd& x0, uint16_t niter, double epsilon = std::numeric_limits<double>::epsilon());
 }

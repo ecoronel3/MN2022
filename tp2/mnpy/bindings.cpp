@@ -8,14 +8,9 @@
 
 namespace py = pybind11;
 
-double powerIteration(Eigen::Ref<const Eigen::MatrixXd> B, Eigen::Ref<const Eigen::VectorXd> x0, const uint16_t niter, const double epsilon)
-{   
-    return mn::powerIteration(B, x0, niter, epsilon).first;
-}
-
 PYBIND11_MODULE(mnpy, m) 
 {
-    m.def("powerIteration", &powerIteration, "The Power Method");
+    m.def("powerIteration", &mn::powerIteration, "The Power Method");
 
     py::class_<mn::PCA>(m, "PCA", py::dynamic_attr())
         .def(py::init())
@@ -27,7 +22,8 @@ PYBIND11_MODULE(mnpy, m)
         .def("getEigenValues", &mn::PCA::getEigenValues)
         .def("getComponents", &mn::PCA::getComponents)
         .def_readwrite("n_components", &mn::PCA::nComponents)
-        .def_readwrite("iterated_power", &mn::PCA::iteratedPower);
+        .def_readwrite("iterated_power", &mn::PCA::iteratedPower)
+        .def_readwrite("tolerance_error", &mn::PCA::toleranceError);
 
     py::class_<mn::kNNClassifier>(m, "kNNClassifier", py::dynamic_attr())
         .def(py::init())
