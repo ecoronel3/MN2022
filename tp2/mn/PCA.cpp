@@ -24,6 +24,7 @@ namespace mn
 
         ////// power method ///////
         m_Components.resize(nComponents, mFeatures);
+        m_EigenValues.resize(nComponents);
         for(std::uint16_t i = 0; i < nComponents; ++i)
         {
             Eigen::VectorXd vi = randVectorXd(mFeatures, 0.1, 1.0);
