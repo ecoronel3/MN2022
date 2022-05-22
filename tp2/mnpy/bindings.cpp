@@ -5,6 +5,8 @@
 #include "mn/powerIteration.h"
 #include "mn/PCA.h"
 #include "mn/kNNClassifier.h"
+#include "mn/DistanceMetric.h"
+#include "mn/Weights.h"
 
 namespace py = pybind11;
 
@@ -54,7 +56,7 @@ PYBIND11_MODULE(mnpy, m)
             },
             [](py::tuple t) { // __setstate__
                 if (t.size() != 3)
-                    throw std::runtime_error("Invalid state!");
+                    throw std::runtime_error("Invalid state for PCA!");
 
                 /* Create a new C++ instance */
                 mn::PCA pca;
@@ -68,11 +70,12 @@ PYBIND11_MODULE(mnpy, m)
 
     py::class_<mn::kNNClassifier> knn(m, "kNNClassifier", py::dynamic_attr());
     knn.def(py::init())
-        .def(py::init<std::uint16_t, mn::KNNWeights>())
+        .def(py::init<std::uint16_t, mn::DistanceMetric, mn::Weights>())
         .def("fit", &mn::kNNClassifier::fit)
         .def("predict", &mn::kNNClassifier::predict)
         .def("score", &mn::kNNClassifier::score)
         .def_readwrite("k_neighbors", &mn::kNNClassifier::kNeighbors)
+        .def_readwrite("distance_metric", &mn::kNNClassifier::distanceMetric)
         .def_readwrite("weights", &mn::kNNClassifier::weights)
         .def("__copy__",  [](const mn::kNNClassifier& self) {
             return mn::kNNClassifier(self);
@@ -87,9 +90,14 @@ PYBIND11_MODULE(mnpy, m)
                 self.kNeighbors = kwargs["k_neighbors"].cast<std::uint16_t>();
             }
 
+            if (kwargs.contains("distance_metric"))
+            {
+                self.distanceMetric = kwargs["distance_metric"].cast<mn::DistanceMetric>();
+            }
+
             if (kwargs.contains("weights"))
             {
-                self.weights = kwargs["weights"].cast<mn::KNNWeights>();
+                self.weights = kwargs["weights"].cast<mn::Weights>();
             }
 
             return self;
@@ -97,23 +105,29 @@ PYBIND11_MODULE(mnpy, m)
         .def(py::pickle(
             [](const mn::kNNClassifier& self) { // __getstate__
                 /* Return a tuple that fully encodes the state of the object */
-                return py::make_tuple(self.kNeighbors, self.weights);
+                return py::make_tuple(self.kNeighbors, self.distanceMetric, self.weights);
             },
             [](py::tuple t) { // __setstate__
-                if (t.size() != 2)
-                    throw std::runtime_error("Invalid state!");
+                if (t.size() != 3)
+                    throw std::runtime_error("Invalid state for kNNClassifier!");
 
                 /* Create a new C++ instance */
                 mn::kNNClassifier knn;
                 knn.kNeighbors = (t[0].cast<std::uint16_t>());
-                knn.weights = (t[1].cast<mn::KNNWeights>());
+                knn.distanceMetric = (t[1].cast<mn::DistanceMetric>());
+                knn.weights = (t[2].cast<mn::Weights>());
                 return knn;
             }
         ));
 
-    py::enum_<mn::KNNWeights>(m, "KNNWeights")
-        .value("Uniform", mn::KNNWeights::Uniform)
-        .value("Distance", mn::KNNWeights::Distance)
-        .value("Manhattan", mn::KNNWeights::Manhattan)
+    py::enum_<mn::DistanceMetric>(m, "DistanceMetric")
+        .value("Euclidean", mn::DistanceMetric::Euclidean)
+        .value("Manhattan", mn::DistanceMetric::Manhattan)
+        .value("Chebyshev", mn::DistanceMetric::Chebyshev)
+        .export_values();
+
+    py::enum_<mn::Weights>(m, "Weights")
+        .value("Uniform", mn::Weights::Uniform)
+        .value("Distance", mn::Weights::Distance)
         .export_values();
 }

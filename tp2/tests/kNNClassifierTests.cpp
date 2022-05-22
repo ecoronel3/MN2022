@@ -21,7 +21,7 @@ TEST(kNNClassifier, k1)
 
 TEST(kNNClassifier, kn)
 {
-    mn::kNNClassifier knn{3,mn::KNNWeights::Uniform};
+    mn::kNNClassifier knn{3, mn::DistanceMetric::Euclidean, mn::Weights::Uniform};
 
     Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
     Eigen::VectorXi labels{3};
@@ -85,7 +85,7 @@ TEST(kNNClassifier, knEmpate)
 
 TEST(kNNClassifier, knWeighted)
 {
-    mn::kNNClassifier knn{5, mn::KNNWeights::Distance};
+    mn::kNNClassifier knn{5, mn::DistanceMetric::Euclidean};
 
     Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 1000.0}, {0.0, 0.0, 3000.0}, {0.0, 0.0, 2000.0}};
     Eigen::VectorXi labels{5};
@@ -100,7 +100,7 @@ TEST(kNNClassifier, knWeighted)
 
 TEST(kNNClassifier, knManhattan)
 {
-    mn::kNNClassifier knn{4, mn::KNNWeights::Manhattan};
+    mn::kNNClassifier knn{4, mn::DistanceMetric::Manhattan};
 
     Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
     Eigen::VectorXi labels{4};
