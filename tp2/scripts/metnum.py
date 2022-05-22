@@ -16,22 +16,16 @@ class GridSearchCV:
     def fit(self, X, y):
         self.results = []
         self.best_params = {
-            'score': 0
+            'mean_score': 0
         }
 
-        for k, (train, test) in enumerate(self.cv.split(X, y)):
-            for n_component in self.n_components:
-                for iterated_power in self.iterated_powers:
-                    for tolerance_error in self.tolerance_errors:
-                        for k_neighbor in self.k_neighbors:
-
-                            result = { 
-                                'n_component': n_component, 
-                                'iterated_power': iterated_power,
-                                'k_neighbor': k_neighbor,
-                                'cv_split': k
-                            }
-
+        for n_component in self.n_components:
+            for iterated_power in self.iterated_powers:
+                for tolerance_error in self.tolerance_errors:
+                    for k_neighbor in self.k_neighbors:
+                        n_splits = self.cv.get_n_splits(X, y)
+                        total_score = 0.0
+                        for k, (train, test) in enumerate(self.cv.split(X, y)):
                             pca = mn.PCA(n_component, iterated_power)
                             pca.tolerance_error = tolerance_error
                             X_train = X[train]
@@ -39,15 +33,26 @@ class GridSearchCV:
                             pca.fit(X_train, y_train)
                             X_traing_transformed = pca.transform(X[train])
 
-                            knn = mn.kNNClassifier(k_neighbor)
+                            knn = mn.kNNClassifier(k_neighbor, mn.KNNWeights.Uniform)
                             knn.fit(X_traing_transformed, y_train)
                             X_test = pca.transform(X[test])
                             y_test = y[test]
-                            result['score'] =  knn.score(X_test, y_test)
-                            if self.best_params['score'] < result['score']:
-                                self.best_params = result
+                            score =  knn.score(X_test, y_test)
+                            total_score += score
 
-                            self.results.append(result)
+                        mean_score = total_score / n_splits
+
+                        result = { 
+                                'n_component': n_component, 
+                                'iterated_power': iterated_power,
+                                'k_neighbor': k_neighbor,
+                                'mean_score': mean_score
+                            }
+
+                        if self.best_params['mean_score'] < result['mean_score']:
+                            self.best_params = result
+
+                        self.results.append(result)
 
         return self
 
@@ -60,45 +65,3 @@ def plot_gallery(images, titles, h, w, n_row=1, n_col=2):
         pyplot.title(titles[i], size=12)
         pyplot.xticks(())
         pyplot.yticks(())
-
-def graph_config(legends, results):
-    old_n_neighbors = legends[0]['knn__n_neighbors']
-    set_of_lists_with_results = []
-    list_with_results = []
-    graph_names = []
-    for index, legend in enumerate(legends):
-        new_n_neighbors = legend['knn__n_neighbors']
-
-        if new_n_neighbors == old_n_neighbors:
-            list_with_results.append(results[index])
-        else:
-            graph_names.append(old_n_neighbors)
-            set_of_lists_with_results.append(list_with_results)
-            list_with_results = [results[index]]
-            old_n_neighbors = new_n_neighbors
-    graph_names.append(new_n_neighbors)
-    set_of_lists_with_results.append(list_with_results)
-    return graph_names, set_of_lists_with_results
-
-def graph(N_COMPONENTS, graph_names, set_of_lists_with_results):
-    traces = []
-    for index, set in enumerate(set_of_lists_with_results):
-        x = N_COMPONENTS
-        y = set
-        name = "cantidad de vecinos = " + str(graph_names[index])
-        traces.append(Scatter(x=x, y=y, name=name))
-    layout = Layout(
-        xaxis=dict(
-            title='Cantidad de componentes principales',
-            type='log',
-            autorange=True
-        ),
-        yaxis=dict(
-            title='% Accuracy',
-            type='log',
-            autorange=True
-        ),
-        title="Medida de performance - Accuracy"
-    )
-    figure = Figure(data=traces, layout=layout)
-    plotly.offline.iplot(figure)

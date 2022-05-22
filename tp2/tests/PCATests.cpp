@@ -3,6 +3,21 @@
 #include <Eigen/Dense>
 #include "mn/PCA.h"
 
+TEST(PCATests, DefaultConstructor)
+{
+    mn::PCA pca;
+
+    pca.nComponents = 3;
+    pca.iteratedPower = 12;
+
+    Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+    pca.fit(data);
+    EXPECT_EQ(pca.getEigenValues().size(), 3);
+    EXPECT_EQ(pca.getComponents().cols(), 3);
+    EXPECT_EQ(pca.getComponents().rows(), 3);
+
+}
+
 TEST(PCATests, FitSquareMatrix)
 {
     mn::PCA pca{3, 120};
