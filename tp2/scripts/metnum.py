@@ -16,22 +16,16 @@ class GridSearchCV:
     def fit(self, X, y):
         self.results = []
         self.best_params = {
-            'score': 0
+            'mean_score': 0
         }
 
-        for k, (train, test) in enumerate(self.cv.split(X, y)):
-            for n_component in self.n_components:
-                for iterated_power in self.iterated_powers:
-                    for tolerance_error in self.tolerance_errors:
-                        for k_neighbor in self.k_neighbors:
-
-                            result = { 
-                                'n_component': n_component, 
-                                'iterated_power': iterated_power,
-                                'k_neighbor': k_neighbor,
-                                'cv_split': k
-                            }
-
+        for n_component in self.n_components:
+            for iterated_power in self.iterated_powers:
+                for tolerance_error in self.tolerance_errors:
+                    for k_neighbor in self.k_neighbors:
+                        n_splits = self.cv.get_n_splits(X, y)
+                        total_score = 0.0
+                        for k, (train, test) in enumerate(self.cv.split(X, y)):
                             pca = mn.PCA(n_component, iterated_power)
                             pca.tolerance_error = tolerance_error
                             X_train = X[train]
@@ -43,11 +37,22 @@ class GridSearchCV:
                             knn.fit(X_traing_transformed, y_train)
                             X_test = pca.transform(X[test])
                             y_test = y[test]
-                            result['score'] =  knn.score(X_test, y_test)
-                            if self.best_params['score'] < result['score']:
-                                self.best_params = result
+                            score =  knn.score(X_test, y_test)
+                            total_score += score
 
-                            self.results.append(result)
+                        mean_score = total_score / n_splits
+
+                        result = { 
+                                'n_component': n_component, 
+                                'iterated_power': iterated_power,
+                                'k_neighbor': k_neighbor,
+                                'mean_score': mean_score
+                            }
+
+                        if self.best_params['mean_score'] < result['mean_score']:
+                            self.best_params = result
+
+                        self.results.append(result)
 
         return self
 
