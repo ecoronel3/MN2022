@@ -29,7 +29,8 @@ namespace mn
 
             const Eigen::VectorXd& getEigenValues() const { return m_EigenValues; }
             const Eigen::MatrixXd& getComponents() const { return m_Components; }
-            
+
+            // attributes
             uint16_t nComponents{8};
             uint16_t iteratedPower{32};
             double toleranceError = std::numeric_limits<double>::epsilon();
