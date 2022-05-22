@@ -1,6 +1,7 @@
 #include "kNNClassifier.h"
 #include <queue>
 #include <map>
+#include <unordered_map>
 
 namespace mn
 {
@@ -36,13 +37,6 @@ namespace mn
             for (int j = 0; j < m_X.rows(); j++)
             {
                 const double distance = distanceFun(X.row(i), m_X.row(j));
-                // if(weights == KNNWeights::Uniform || weights == KNNWeights::Distance)
-                // {
-                //     distance = (X.row(i) - m_X.row(j)).norm();
-                // } else
-                // {
-                //     distance = (X.row(i) - m_X.row(j)).lpNorm<1>();
-                // }
 
                 if (distances.size() < kNeighbors)
                 {
@@ -55,7 +49,7 @@ namespace mn
                 }
             }
 
-            std::map<int, double> neighbor_classes;
+            std::unordered_map<int, double> neighbor_classes;
             int classification = -1;        
             double max_count = 0.0;
             while (!distances.empty())
@@ -64,15 +58,13 @@ namespace mn
                 distances.pop();
                 auto neighbor_class = m_y[neighbor.second];
                 double old_value = 0.0;
-                if(neighbor_classes.count(neighbor_class) > 0)
+                if (neighbor_classes.count(neighbor_class) > 0)
                 {
                     old_value = neighbor_classes[neighbor_class];
                 }
                 
                 double new_value;
-                new_value = old_value + 1.0/neighbor.first;
-
-                if(weights == Weights::Distance)
+                if (weights == Weights::Distance)
                 {
                     new_value = old_value + 1.0/neighbor.first;
                 } 
@@ -81,7 +73,7 @@ namespace mn
                     new_value = old_value + 1.0;
                 }
 
-                if(classification == neighbor_class)
+                if (classification == neighbor_class)
                 {
                     max_count = new_value;
                 } 
@@ -92,7 +84,6 @@ namespace mn
                     max_count = new_value;
                 }
                 neighbor_classes[neighbor_class] = new_value;
-
             }
             yPredicted(i) = classification;
         }

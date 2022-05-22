@@ -3,7 +3,9 @@
 #include <Eigen/Dense>
 #include "mn/kNNClassifier.h"
 
-TEST(kNNClassifier, k1)
+#include <queue>
+
+TEST(kNNClassifierTests, k1)
 {
     mn::kNNClassifier knn{1};
 
@@ -19,7 +21,7 @@ TEST(kNNClassifier, k1)
     }
 }
 
-TEST(kNNClassifier, kn)
+TEST(kNNClassifierTests, kn)
 {
     mn::kNNClassifier knn{3, mn::DistanceMetric::Euclidean, mn::Weights::Uniform};
 
@@ -35,7 +37,7 @@ TEST(kNNClassifier, kn)
     }
 }
 
-TEST(kNNClassifier, kn2)
+TEST(kNNClassifierTests, kn2)
 {
     mn::kNNClassifier knn{2};
 
@@ -51,7 +53,7 @@ TEST(kNNClassifier, kn2)
     
 }
 
-TEST(kNNClassifier, kn3)
+TEST(kNNClassifierTests, kn3)
 {
     mn::kNNClassifier knn{3};
 
@@ -67,7 +69,7 @@ TEST(kNNClassifier, kn3)
     
 }
 
-TEST(kNNClassifier, knEmpate)
+TEST(kNNClassifierTests, knEmpate)
 {
     mn::kNNClassifier knn{4};
 
@@ -83,7 +85,7 @@ TEST(kNNClassifier, knEmpate)
     
 }
 
-TEST(kNNClassifier, knWeighted)
+TEST(kNNClassifierTests, knWeighted)
 {
     mn::kNNClassifier knn{5, mn::DistanceMetric::Euclidean};
 
@@ -98,7 +100,7 @@ TEST(kNNClassifier, knWeighted)
     
 }
 
-TEST(kNNClassifier, knManhattan)
+TEST(kNNClassifierTests, knManhattan)
 {
     mn::kNNClassifier knn{4, mn::DistanceMetric::Manhattan};
 
@@ -110,6 +112,5 @@ TEST(kNNClassifier, knManhattan)
     auto classification = knn.predict(data);
     EXPECT_EQ(classification.size(), 2);
     EXPECT_EQ(classification[0], 0);
-    EXPECT_EQ(classification[1], 1);
-    
+    EXPECT_EQ(classification[1], 1);   
 }
