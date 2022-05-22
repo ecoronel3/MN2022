@@ -21,7 +21,7 @@ TEST(kNNClassifier, k1)
 
 TEST(kNNClassifier, kn)
 {
-    mn::kNNClassifier knn{3};
+    mn::kNNClassifier knn{3,mn::KNNWeights::Uniform};
 
     Eigen::MatrixXd data{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
     Eigen::VectorXi labels{3};
@@ -70,6 +70,37 @@ TEST(kNNClassifier, kn3)
 TEST(kNNClassifier, knEmpate)
 {
     mn::kNNClassifier knn{4};
+
+    Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
+    Eigen::VectorXi labels{4};
+    labels << 0,0,1,1;
+    Eigen::MatrixXd data{{0.0, 0.0, -2.5}, {0.0, 0.0, 2.5}};
+    knn.fit(trainData, labels);
+    auto classification = knn.predict(data);
+    EXPECT_EQ(classification.size(), 2);
+    EXPECT_EQ(classification[0], 0);
+    EXPECT_EQ(classification[1], 1);
+    
+}
+
+TEST(kNNClassifier, knWeighted)
+{
+    mn::kNNClassifier knn{5, mn::KNNWeights::Distance};
+
+    Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 1000.0}, {0.0, 0.0, 3000.0}, {0.0, 0.0, 2000.0}};
+    Eigen::VectorXi labels{5};
+    labels << 0,0,1,1,1;
+    Eigen::MatrixXd data{{0.0, 0.0, -2.5}};
+    knn.fit(trainData, labels);
+    auto classification = knn.predict(data);
+    EXPECT_EQ(classification.size(), 1);
+    EXPECT_EQ(classification[0], 0);
+    
+}
+
+TEST(kNNClassifier, knManhattan)
+{
+    mn::kNNClassifier knn{4, mn::KNNWeights::Manhattan};
 
     Eigen::MatrixXd trainData{{0.0, 0.0, -2.0}, {0.0, 0.0, -3.0}, {0.0, 0.0, 2.0}, {0.0, 0.0, 3.0}};
     Eigen::VectorXi labels{4};

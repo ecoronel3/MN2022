@@ -36,6 +36,6 @@ PYBIND11_MODULE(mnpy, m)
     py::enum_<mn::KNNWeights>(m, "KNNWeights")
         .value("Uniform", mn::KNNWeights::Uniform)
         .value("Distance", mn::KNNWeights::Distance)
-        .value("Custom", mn::KNNWeights::Custom)
+        .value("Manhattan", mn::KNNWeights::Manhattan)
         .export_values();
 }

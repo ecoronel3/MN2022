@@ -30,10 +30,19 @@ namespace mn
         Eigen::VectorXi yPredicted = Eigen::VectorXi::Ones(X.rows());
         for (int i = 0; i < X.rows(); i++)
         {   
+            
             std::priority_queue<std::pair<double, int>> distances;
             for (int j = 0; j < m_X.rows(); j++)
             {
-                auto distance = (X.row(i) - m_X.row(j)).norm();
+                double distance;
+                if(weights == KNNWeights::Uniform || weights == KNNWeights::Distance)
+                {
+                    distance = (X.row(i) - m_X.row(j)).norm();
+                } else
+                {
+                    distance = (X.row(i) - m_X.row(j)).lpNorm<1>();
+                }
+
                 if (distances.size() < kNeighbors)
                 {
                     distances.push(std::make_pair(distance, j));
@@ -44,28 +53,40 @@ namespace mn
                     distances.push(std::make_pair(distance, j));     // replace the greatest distance with the new distance
                 }
             }
-            std::map<int, std::pair<int, double>> neighbor_classes; //par cantidad, distancia total
+            std::map<int, double> neighbor_classes;
             int classification = -1;
-            int count = 0;
+        
+            double max_count = 0.0;
 
             while (!distances.empty())
             {   
                 auto neighbor = distances.top();
                 distances.pop();
                 auto neighbor_class = m_y[neighbor.second];
-                auto old_value = neighbor_classes[neighbor_class];
-                neighbor_classes[neighbor_class] = std::make_pair(old_value.first + 1, old_value.second + neighbor.first);
+                double old_value = 0.0;
+                if(neighbor_classes.count(neighbor_class) > 0){
+                    old_value = neighbor_classes[neighbor_class];
+                }
+                double new_value;
+                
+
+                if(weights == KNNWeights::Distance){
+                    new_value = old_value + 1.0/neighbor.first;
+                } else {
+                    new_value = old_value + 1.0;
+                }
 
                 if(classification == neighbor_class)
                 {
-                    count++;
-                } 
-                else if (old_value.first + 1 >= count)  
+                    max_count = new_value;
+                } else if (new_value >= max_count)  
                 // Como voy sacando en orden decreciente de distancia, conviene que gane el ultimo en ser sacado de la cola
                 {
                     classification = neighbor_class;
-                    count = old_value.first + 1;
+                    max_count = new_value;
                 }
+                neighbor_classes[neighbor_class] = new_value;
+
             }
             yPredicted(i) = classification;
         }

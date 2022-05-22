@@ -10,7 +10,7 @@ namespace mn
     {
         Uniform,
         Distance,
-        Custom
+        Manhattan
     };
 
     class kNNClassifier
