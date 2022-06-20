@@ -60,11 +60,18 @@ def loess(data, Y, f=0.1, fit='quadratic'):
         try:
             coeffs = linalg.solve(np.dot(At, np.dot(W, A)), np.dot(At, np.dot(W, b)))
         except:
-            print('matriz singular')
-            print(data_norm[i])
-            print(data_norm[indexes])
-            print(W)
-            coeffs = linalg.solve(np.dot(At, A), np.dot(At, b))
+            U, E, Vt = linalg.svd(np.dot(W, A))
+            V = np.transpose(Vt)
+            Ut = np.transpose(U)
+            
+            Et = np.zeros((np.shape(V)[1], np.shape(Ut)[0]))
+            
+            for j in range(0, len(E)):
+                if E[j] != 0:
+                    Et[j,j] = 1/E[j]
+            
+            MPInv = np.dot(V, np.dot(Et, Ut))
+            coeffs = np.dot(MPInv, np.dot(W, b))
         
         
         if fit=='quadratic':
