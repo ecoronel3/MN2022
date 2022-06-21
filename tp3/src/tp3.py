@@ -44,7 +44,7 @@ def loess(data, Y, f=0.1, fit='quadratic'):
     if fit == 'quadratic':
         poly = PolynomialFeatures(2)
     
-    y_ests = np.zeros_like(Y)
+    y_ests = np.zeros_like(Y,dtype="float64")
     
     for i in range(0, len(data_norm)):
         distances = linalg.norm(data_norm - data_norm[i], ord=2, axis=1)
