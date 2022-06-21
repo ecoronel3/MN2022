@@ -37,29 +37,29 @@ def get_weights(distances, max_dist):
     weights = tricubic(distances/max_dist)
     return np.diag(weights)
 
-def loess(data, Y, f=0.1, fit='quadratic'):
-    n = len(Y)
-    q = int(math.floor(f*n))
-    data_norm = normalize(data)
-    if fit == 'quadratic':
-        poly = PolynomialFeatures(2)
+def loess(data, Y, f=0.1, fit=1, dist=2, normalize=True):
+    cant = len(Y)
+    q = int(math.ceil(f*cant))
+    if normalize:
+        data = normalize(data)
+    else:
+        data = data
     
     y_ests = np.zeros_like(Y,dtype="float64")
+    poly = PolynomialFeatures(fit)
     
-    for i in range(0, len(data_norm)):
-        distances = linalg.norm(data_norm - data_norm[i], ord=2, axis=1)
+    for i in range(0, cant):
+        distances = linalg.norm(data - data[i], ord=dist, axis=1)
         indexes, max_dist = get_indexes(distances, q)
         W = get_weights(distances[indexes], max_dist)
         b = Y[indexes]
-        if fit=='quadratic':
-            A = poly.fit_transform(data_norm[indexes])
-        else:
-            A = np.append(np.ones((len(indexes),1)), data_norm[indexes], axis=1)
+        A = poly.fit_transform(data[indexes])
             
         At = np.transpose(A)
         try:
             coeffs = linalg.solve(np.dot(At, np.dot(W, A)), np.dot(At, np.dot(W, b)))
         except:
+
             U, E, Vt = linalg.svd(np.dot(W, A))
             V = np.transpose(Vt)
             Ut = np.transpose(U)
@@ -73,12 +73,8 @@ def loess(data, Y, f=0.1, fit='quadratic'):
             MPInv = np.dot(V, np.dot(Et, Ut))
             coeffs = np.dot(MPInv, np.dot(W, b))
         
-        
-        if fit=='quadratic':
-            y_est = np.dot(poly.fit_transform(data_norm[i].reshape(1, -1)),coeffs)
-        else:
-            y_est = np.dot(np.append([1.0], data_norm[i]), coeffs)
-        
+        y_est = np.dot(poly.fit_transform(data[i].reshape(1, -1)),coeffs)
+
         y_ests[i] = y_est
     
     return y_ests
