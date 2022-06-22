@@ -12,7 +12,7 @@ def tricubic(x):
     y[idx] = np.power(1.0 - np.power(np.abs(x[idx]), 3), 3)
     return y
 
-def normalize(array):
+def normalized(array):
     stds = array.std(axis=0)    
     return (array- array.mean(axis=0))/stds
 
@@ -41,7 +41,7 @@ def loess(data, Y, f=0.1, fit=1, dist=2, normalize=True):
     cant = len(Y)
     q = int(math.ceil(f*cant))
     if normalize:
-        data = normalize(data)
+        data = normalized(data)
     else:
         data = data
     
