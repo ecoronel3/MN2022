@@ -3,17 +3,16 @@ import numpy as np
 import math
 import csv
 
-def func_g(x1, x2, x3):
-    return x1*x2 + x1*x3
+def func_g(x1, x2):
+    return 10*np.sin(x1 + x2)
 
 def generate_data(n_samples,):
     mu=0
     sigma=1
-    x1 = np.random.uniform(0, 10, n_samples)
-    x2 = np.random.exponential(2, n_samples)
-    x3 = np.random.normal(10, 5, n_samples)
-    y = func_g(x1, x2, x3) + np.random.normal(mu, sigma, size=n_samples)
-    return [y, x1, x2, x3]
+    x1 = np.random.uniform(0, 4*math.pi, n_samples)
+    x2 = np.random.normal(0, math.pi/8, n_samples)
+    y = func_g(x1, x2) + np.random.normal(mu, sigma, size=n_samples)
+    return [y, x1, x2]
 
 def generate_file(n_samples, filepath):
     features = generate_data(n_samples)
