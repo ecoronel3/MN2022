@@ -12,9 +12,14 @@ def tricubic(x):
     y[idx] = np.power(1.0 - np.power(np.abs(x[idx]), 3), 3)
     return y
 
-def normalized(array):
-    stds = array.std(axis=0)
-    
+def bisquare(x):
+    y = np.zeros_like(x)
+    idx = (x >= 0) & (x <= 1)
+    y[idx] = np.power(1.0 - np.power(x[idx], 2), 2)
+    return y
+
+def normalized(array, est):
+    stds = array.std(axis=0)    
     return (array- array.mean(axis=0))/stds, (est - array.mean(axis=0))/stds
 
 def get_indexes(distances, q):
@@ -36,16 +41,19 @@ def get_indexes(distances, q):
             
     return indexes, max_dist
 
-def get_weights(distances, max_dist):
+def tricubic_weights(distances, max_dist):
     weights = tricubic(distances/max_dist)
     return np.diag(weights)
 
-def loess(data, Y, to_estimate, f=0.1, fit=1, dist=2, normalize=True):
+def bisquare_weights(distances, max_dist):
+    weights = bisquare(distances/max_dist)
+    return np.diag(weights)
+
+def loess(data, Y, to_estimate, f=0.1, fit=1, dist=2, normalize=True, weight='tricubic'):
     q = int(math.ceil(f*len(Y)))
     if normalize:
         data, to_estimate = normalized(data, to_estimate)
-        
-    
+
     poly = PolynomialFeatures(fit)
     cant = len(to_estimate)
     
@@ -58,7 +66,7 @@ def loess(data, Y, to_estimate, f=0.1, fit=1, dist=2, normalize=True):
         A = poly.fit_transform(data[indexes])
         x = poly.transform(to_estimate[i].reshape(1,-1))
 
-        W = get_weights(distances[indexes], max_dist)
+        W = tricubic_weights(distances[indexes], max_dist) if weight=='tricubic' else bisquare_weights(distances[indexes], max_dist)
 
         b = Y[indexes]
         
