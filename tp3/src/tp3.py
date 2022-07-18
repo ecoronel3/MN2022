@@ -8,13 +8,13 @@ import heapq
 
 def tricubic(x):
     y = np.zeros_like(x)
-    idx = (x >= 0) & (x <= 1)
+    idx = (x >= -1) & (x <= 1)
     y[idx] = np.power(1.0 - np.power(np.abs(x[idx]), 3), 3)
     return y
 
 def bisquare(x):
     y = np.zeros_like(x)
-    idx = (x >= 0) & (x <= 1)
+    idx = (x >= -1) & (x <= 1)
     y[idx] = np.power(1.0 - np.power(x[idx], 2), 2)
     return y
 
