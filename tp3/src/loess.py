@@ -19,6 +19,12 @@ def bisquare(x):
     y[idx] = np.power(1.0 - np.power(x[idx], 2), 2)
     return y
 
+def quintuple(x):
+    y = np.zeros_like(x)
+    idx = (x >= -1) & (x <= 1)
+    y[idx] = np.power(1.0 - np.power(np.abs(x[idx]), 5), 5)
+    return y
+
 def _normalize(array, est):
     stds = array.std(axis=0)    
     return (array - array.mean(axis=0))/stds, (est - array.mean(axis=0))/stds
