@@ -38,6 +38,13 @@ class Loess(BaseEstimator):
         self.dist = dist
         self.weight = weight
         self.normalize = normalize
+    
+    def __str__(self) -> str:
+        s = 'ajuste '
+        s += 'lineal' if self.degree == 1 else 'cuadrático'
+        s += f', f = {self.f}'
+        s += ', tricúbica' if self.weight == 'tricubic' else ', bicuadrada'
+        return s
 
     def fit(self, X, y):
         self.q = int(math.ceil(self.f*len(y)))
