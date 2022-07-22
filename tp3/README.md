@@ -1,4 +1,4 @@
-# Métodos Numéricos - Ajustando Suavemente - TP3
+# Métodos Numéricos - Ajustando Suavemente 
 Explicación y pequeña implementación del algoritmo Locally Weighted Regression (loess) 
 
 ## Requerimientos
