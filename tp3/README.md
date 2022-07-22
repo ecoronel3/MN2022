@@ -1,6 +1,6 @@
-# Métodos Numéricos - Ajustando suavemente
-Pequeña implementación de Locally Weighted Regression (loess)
+# MÉTODOS NUMÉRICOS - AJUSTANDO SUAVEMENTE - TP3
+Explicación y pequeña implementación del algoritmo Locally Weighted Regression (loess) 
 
-## Requerimientos
-- Python 3
+## REQUERIMIENTOS
+- Python 3;
 - Los paquetes utilizados pueden encontrarse en el archivo requirements.txt
